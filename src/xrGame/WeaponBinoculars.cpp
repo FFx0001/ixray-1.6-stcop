@@ -26,6 +26,7 @@ void CWeaponBinoculars::Load(LPCSTR section)
 
 	// Sounds
 	m_bVision = !!pSettings->r_bool(section, "vision_present");
+	m_flags.set(FUsingCondition, READ_IF_EXISTS(pSettings, r_bool, section, "use_condition", false));
 }
 
 bool CWeaponBinoculars::Action(u16 cmd, u32 flags) 
