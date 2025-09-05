@@ -485,6 +485,10 @@ bool CDetailPathManager::init_build(
 	VERIFY								(!level_path.empty());
 	VERIFY								(level_path.size() > intermediate_index);
 
+	if (level_path.empty()) {
+		return false;
+	}
+
 	m_current_travel_point				= 0;
 	m_path.clear						();
 
@@ -492,6 +496,7 @@ bool CDetailPathManager::init_build(
 	start.direction						= ai().level_graph().v2d(m_start_direction);
 	start.vertex_id						= level_path.front();
 	
+
 	validate_vertex_position			(start);
 	
 	dest.position						= ai().level_graph().v2d(m_dest_position);

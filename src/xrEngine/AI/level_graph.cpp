@@ -59,8 +59,11 @@ bool ILevelGraph::Search(u32 start_vertex_id, u32 dest_vertex_id, xr_vector<u32>
 		return m_distance_xz * 2 * (fabs(x1 - x2) + fabs(y1 - y2));
 	};
 
+	int tries = 0;
+
 	while (!TempPriorityNode.empty())
 	{
+		tries++;
 		u32 CurrentNodeID = TempPriorityNode.back().second;
 		TempPriorityNode.pop_back();
 
@@ -74,6 +77,11 @@ bool ILevelGraph::Search(u32 start_vertex_id, u32 dest_vertex_id, xr_vector<u32>
 			}
 			OutPath.insert(OutPath.begin(), NextNode);
 			return true;
+		}
+
+		if (tries > 1200) {
+			TempPriorityNode.clear();
+			return false;
 		}
 
 		CVertex* Node = vertex(CurrentNodeID);

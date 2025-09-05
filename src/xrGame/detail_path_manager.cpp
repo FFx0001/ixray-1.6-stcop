@@ -114,6 +114,7 @@ void CDetailPathManager::build_path(const xr_vector<u32> &level_path, u32 interm
 		}
 		if (failed()) {
 #ifndef MASTER_GOLD
+			return;
 			Msg						("! DetailPathManager has failed : from [%f,%f,%f] to [%f,%f,%f]", VPUSH(ai().level_graph().vertex_position(level_path.front())), VPUSH(ai().level_graph().vertex_position(level_path.back())));
 #endif // #ifndef MASTER_GOLD
 #ifdef DEBUG
