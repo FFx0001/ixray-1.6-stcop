@@ -13,7 +13,7 @@ net_spawn
  Отсутствие коллбека в движке не вызывает вылет
  Отсутсвие вызываемого метода в биндере не вызывает вылет
 --]] 
-local use_callback_logs = true -- логирование подписки и отписки для коллбеков
+local use_callback_logs = false -- логирование подписки и отписки для коллбеков
 local all_callbacks = {
 	["hit"] 				= "hit_callback",
 	["death"] 				= "death_callback",

@@ -1,0 +1,650 @@
+
+--[[
+	IX-Ray Module Options
+	Version: 1.0
+	Author: FFx0001
+	Script: ixr_module_options.script
+	Description: Module for centralized configure scripts options in main menu
+	
+	Public exports:
+		get_module_info()
+		init()
+		is_initialized()
+]]
+
+local USE_FILE_LOG = true
+local USE_CONSOLE_LOG = true
+
+local ixr_options = {
+	options = {},
+	initialized = false,
+	use_file_log = USE_FILE_LOG,
+	use_console_log = USE_CONSOLE_LOG,
+	main_menu_ref = nil,
+	event_counter = 0,
+	controlls_defines = {
+		check_box_width = 70,
+		check_box_height = 18,
+		check_box_alpha = 128,
+		
+		option_plane_width = 620,
+		option_plane_height = 40,
+	}
+}
+
+function getNextEventIndex()
+	ixr_options.event_counter = ixr_options.event_counter + 1
+	
+	return ixr_options.event_counter
+end
+
+-- #######################################
+-- #	 	 	CALLBACKS				 #
+-- #######################################
+function on_game_start()
+	RegisterScriptCallback("main_menu_on_init", this.on_main_menu_init)
+	RegisterScriptCallback("main_menu_on_init_controlls", this.on_main_menu_init_controlls)
+	RegisterScriptCallback("main_menu_on_init_callbacks", this.on_main_menu_init_callbacks)
+end
+
+function on_main_menu_init(_ref)
+	_on_main_menu_init(_ref)
+end
+
+function on_main_menu_init_callbacks(_ref)
+	_on_main_menu_init_callbacks(_ref)
+end
+
+function on_main_menu_init_controlls(_ref)
+	_on_main_menu_init_controlls(_ref)
+end
+
+-- #######################################
+-- #	 	 PUBLIC METHODS 	  	 	 #
+-- #######################################
+
+--[[
+Description: Module management. Returns metadata about the module.
+Return: (table) - A table containing module information such as alias name, category, version, authors, and description.
+]]
+function get_module_info()
+	return {
+		-- (string) constant module name independent of the script name, which will be centralized via ixr_framework.get_module("alias_name") to maintain module versioning without the need to access the script name during integration.
+		alias_name = "ixr_options",
+		
+		-- (string) use once value at range or custom latin snake case name default categories: ["ixr_system", "sub_system", "sub_gameplay", "sub_utils"] use for ordering init calls at 1 to last ASC
+		category = "ixr_system",
+		
+		-- (float) value for controll versions
+		version = 1.0,
+		
+		-- (string) public exposed function name, allowed in this script for auto init module
+		init_function_name = "init",
+		
+		-- (string|string[]) code author(s) nick name(s)
+		authors = "FFx0001",
+		
+		-- (string) short description about module
+		description = "Module for centralized configure scripts options in main menu",
+	}
+end
+
+--[[
+Description: Initializes the module and sets up necessary configurations.
+Return: (bool) - Returns true if the module was successfully initialized.
+]]
+function init()
+	return ixr_options.init()
+end
+
+--[[
+Description: Checks whether the module has been initialized.
+Return: (bool) - Returns true if the module is initialized, otherwise false.
+]]
+function is_initialized()
+	return ixr_options.is_initialized()
+end
+
+
+-- #######################################
+-- #	 	 SYSTEM METHODS 	  	 	 #
+-- #######################################
+
+function ixr_options.is_initialized()
+	return ixr_options.initialized
+end
+
+function ixr_options.init()
+	if ixr_options.is_initialized() then
+		return true
+	end
+
+	ixr_options.initialized = false
+
+	ixr_options.toLog("[IXR OPTIONS] PREPARE INIT", true)
+	
+	RegisterScriptCallback("on_ixr_autoloader_initialized", ixr_options.on_all_scripts_loaded)
+
+	ixr_options.initialized = true
+
+	SemiLog("[IXR OPTIONS] INITIALIZED")
+
+	return true
+end
+
+-- #######################################
+-- #	 	OPTIONS REGISTRATOR 	 	 #
+-- #######################################
+
+function ixr_options.on_all_scripts_loaded(_ref)
+	ixr_options.toLog("[IXR OPTIONS] INIT SCRIPTS OPTIONS BEGIN", true)
+	
+	SendScriptCallback("on_init_ixr_options", ixr_options)
+	
+	ixr_options.toLog("[IXR OPTIONS] INIT SCRIPTS OPTIONS END", true)
+end
+
+function ixr_options.register_option(script_name, group_name, variable_name, controll_data, _callback)
+	SemiLog("script_name:" .. script_name .. " group_name:" .. group_name .. " variable_name:" .. variable_name)
+end
+
+-- #######################################
+-- #	 	 SCRIPT UI TOOLS 	 	 	 #
+-- #######################################
+
+function ixr_options.check_box(def_value)
+	return {
+		["controll"] = "check_box",
+		["default_value"] = def_value
+	}
+end
+
+-- #######################################
+-- #	 	 UI TOOLS METHODS 	 	 	 #
+-- #######################################
+
+function get_controll(name)
+	return get_menu_ref().ixr_controlls[name]
+end
+
+function set_controll(name, controll)
+	get_menu_ref().ixr_controlls[name] = controll
+end
+
+function register_controll(name)
+	get_menu_ref():Register(get_controll(name), name)
+end
+
+function get_options_xml()
+	return ixr_options.main_menu_ref.options_xml
+end
+
+function get_menu_ref()
+	return ixr_options.main_menu_ref
+end
+
+function set_menu_ref(_ref)
+	ixr_options.main_menu_ref = _ref
+end
+
+function draw_options()
+	for k, v in pairs(get_menu_ref().ixr_controlls) do
+		v:Show(true)
+	end
+end
+
+function hide_options()
+	for k, v in pairs(get_menu_ref().ixr_controlls) do
+		v:Show(false)
+	end
+end
+
+function register_static(name_controll, static, x, y, width, height, color)
+	set_controll(name_controll, get_options_xml():InitStatic(static, get_menu_ref()))
+	get_controll(name_controll):SetStretchTexture(true)
+	get_controll(name_controll):SetWndPos(vector2():set(x, y))
+	get_controll(name_controll):SetWndSize(vector2():set(width, height))
+	get_controll(name_controll):SetTextureColor(color)
+	get_controll(name_controll):Show(false)
+	register_controll(name_controll)
+end
+
+function register_button(name_controll, static, x, y, width, height, _callback)
+	set_controll(name_controll, get_options_xml():Init3tButton(static, get_menu_ref()))
+	get_controll(name_controll):SetStretchTexture(true)
+	get_controll(name_controll):SetWndPos(vector2():set(x, y))
+	get_controll(name_controll):SetWndSize(vector2():set(width, height))
+	get_controll(name_controll):Show(false)
+	register_controll(name_controll)
+	get_menu_ref():AddCallback(name_controll, ui_events.BUTTON_CLICKED, _callback, get_menu_ref())
+end
+
+function register_text(name_controll, text_section, displayText, x, y, width, height, color)
+	set_controll(name_controll, get_options_xml():InitStatic(text_section, get_menu_ref()))
+	get_controll(name_controll):SetWndPos(vector2():set(x, y))
+	get_controll(name_controll):SetWndSize(vector2():set(width, height))
+	get_controll(name_controll):TextControl():SetText(displayText)
+	get_controll(name_controll):TextControl():SetTextColor(color)
+	get_controll(name_controll):Show(false)
+	register_controll(name_controll)
+end
+
+function register_list_box(name_controll, list_box, x, y, width, height, item_height)
+	set_controll(name_controll, get_options_xml():InitListBox(list_box, get_menu_ref()))
+	get_controll(name_controll):ShowSelectedItem(true)
+	get_controll(name_controll):SetWndPos(vector2():set(x, y))
+	get_controll(name_controll):SetWidth(width)
+	get_controll(name_controll):SetHeight(height)
+	get_controll(name_controll):SetItemHeight(item_height)
+	get_controll(name_controll):Show(false)
+	register_controll(name_controll)
+	get_menu_ref():AddCallback(name_controll, ui_events.LIST_ITEM_CLICKED, this.OnAddonItemClicked,	get_menu_ref())
+end
+
+function register_scroll_view(name_controll, scroll_section, x, y, width, height)
+    set_controll(name_controll, get_options_xml():InitScrollView(scroll_section, get_menu_ref()))
+    get_controll(name_controll):SetWndPos(vector2():set(x, y))
+	get_controll(name_controll):SetWndSize(vector2():set(width, height))
+    get_controll(name_controll):Show(false)
+    register_controll(name_controll)
+end
+
+function register_image(name_controll, img_path, x, y, width, height, alpha)
+	set_controll(name_controll, get_options_xml():InitStatic("addon_icon", get_menu_ref()))
+	get_controll(name_controll):InitTexture(img_path)
+	get_controll(name_controll):SetStretchTexture(true)
+	get_controll(name_controll):SetWndPos(vector2():set(x, y))
+	get_controll(name_controll):SetWndSize(vector2():set(width, height))
+	get_controll(name_controll):SetTextureColor(GetARGB(alpha, 255, 255, 255))
+	get_controll(name_controll):Show(false)
+	register_controll(name_controll)
+end
+
+function register_checkbox(name_controll, x, y, alpha, state, _ref, _callback)
+	if _ref == nil then
+		_ref = get_menu_ref()
+	end
+	
+	name_controll = name_controll .. "_cb_"
+	
+	set_controll(name_controll, IXRCheckBox(name_controll, x, y, alpha, state, _callback, _ref))
+	get_controll(name_controll):Show(true)
+	register_controll(name_controll)
+end
+
+-- #######################################
+-- #	  MAIN MENU OVERRIDE UI 	 	 #
+-- #######################################
+
+function _on_main_menu_init(_ref)
+	set_menu_ref(_ref)
+	get_menu_ref().options_xml = CScriptXmlInit()
+	get_menu_ref().options_xml:ParseFile("ui_ixr_options.xml")
+	ixr_options.main_menu_ref.ixr_controlls = {}
+end
+
+local options_scroll_wnd = nil
+
+function _on_main_menu_init_controlls(_ref)
+	set_menu_ref(_ref)
+	
+	register_static("ixr_options_background", "ixr_options_overlay_background", 0, 0, 1024, 768, GetARGB(255, 255, 255, 255))
+	
+	local y_padding = 2
+	local title_alpha = 225
+	local middle_alpha = 120
+	local title_text_alpha = 190
+	
+	register_static("ixr_options_title_bg", "black_texture", 13, 13, 958, 43, GetARGB(title_alpha, 255, 255, 255))
+	register_text("ixr_options_title_text", "ixr_options_boycott_32_l", "IX-RAY OPTIONS", 442, 23, 287, 43, GetARGB(title_text_alpha, 255, 255, 255))
+	
+	register_static("ixr_options_title_close_btn_bg", "black_texture", 971, 13, 43, 43, GetARGB(255, 255, 255, 255))
+	register_button("ixr_options_exit_btn", "ixr_options_close_button", 976, 18, 32, 32, this.on_ixr_options_exit_btn_clicked)
+	
+	register_static("ixr_options_middle_bg", "black_texture", 13, 56, 1001, 654, GetARGB(middle_alpha, 255, 255, 255))
+	
+	register_static("ixr_options_l_column_title_bg", "black_texture", 33, 83, 250, 600, GetARGB(middle_alpha, 255, 255, 255))
+	register_static("ixr_options_l_column_bg", "black_texture", 33, 83, 250, 25, GetARGB(middle_alpha, 255, 255, 255))
+	register_text("ixr_options_l_column_title_text", "ixr_options_boycott_18_l", "ADDONS", 150, 87, 250, 600, GetARGB(title_text_alpha, 255, 255, 255))
+	
+	register_static("ixr_options_r_column_title_bg", "black_texture", 308, 83, 685, 25, GetARGB(middle_alpha, 255, 255, 255))
+	register_static("ixr_options_r_column_bg", "black_texture", 308, 83, 685, 600, GetARGB(middle_alpha, 255, 255, 255))
+	register_text("ixr_options_r_column_title_text", "ixr_options_boycott_18_l", "ADDON OPTIONS", 625, 87, 685, 25, GetARGB(title_text_alpha, 255, 255, 255))
+	
+	register_static("ixr_options_footer_bg", "black_texture", 13, 710, 1001, 43, GetARGB(title_alpha, 255, 255, 255))
+	
+	register_static("ixr_options_r_column_info_bg", "black_texture", 308, 108, 685, 150, GetARGB(middle_alpha - (middle_alpha / 2) , 255, 255, 255))
+	local immage_padding = 5
+	register_image("ixr_options_r_column_info_image", "ui\\ixr_options\\icons\\addon_info_image_none", 308 + immage_padding, 108 + immage_padding, 200 - immage_padding, 150 - (immage_padding * 2), 120)
+	
+	register_list_box("addons_list_box", "addons_list", 33, 108, 250, 575, 80)
+	
+	get_controll("addons_list_box"):RemoveAll()
+	for i=1, 15 do
+		get_controll("addons_list_box"):AddExistingItem(
+			AddonItem(
+				vector2():set(250, 65), 
+				"ui\\ixr_options\\icons\\addon_icon",
+				"text_" .. i, GetARGB(255, 255, 255, 255),
+				"Call Of Pripat 1.6.0.2", GetARGB(255, 200, 200, 200),
+				"1.0.0", GetARGB(255, 200, 200, 200),
+				"active", GetARGB(255, 200, 200, 200)
+			)
+		)
+	end
+
+	register_scroll_view("options_scroll", "scroll_v", 320, 270, 670, 400)
+	get_controll("options_scroll"):Show(false)
+end
+
+function on_draw_options()
+	local shell_width = 650
+	local shell_height = 160
+	
+	local cnt = math.random(5, 40)
+	for i=1, cnt do
+		local padding = 7
+		local alpha = 75
+		
+
+		if math.random(1,100) > 50 then
+			add_option_group(i, padding, alpha, math.random(2,6), "group name: [ " .. tostring(i) .. " ]", "option name: [ " .. tostring(i) .. " ]")
+		else
+			add_single_ungroupped_option(i, padding, alpha + (alpha / 2), "option name: [ " .. tostring(i) .. " ]")
+		end
+
+	end
+	
+	return true
+end
+
+function OnAddonItemClicked()
+	if get_controll("addons_list_box"):GetSize() == 0 then return end
+
+	local item = get_controll("addons_list_box"):GetSelectedItem()
+	local index = get_controll("addons_list_box"):GetSelectedIndex()
+	
+	SemiLog("selected:" .. tostring(index) .. " name:" .. tostring(item.addon_display_name))
+	
+	get_controll("options_scroll"):Clear()
+	get_controll("options_scroll"):Show(false)
+	if on_draw_options(index, item) then
+		get_controll("options_scroll"):Show(true)
+	end
+end
+
+function add_single_ungroupped_option(option_index, padding, alpha, display_text)
+	local texture_width = ixr_options.controlls_defines.option_plane_width
+	local texture_height = ixr_options.controlls_defines.option_plane_height
+	
+	add_option_shell(option_index, texture_width, texture_height, function (_shell)
+		local controll_option_bg_name = "single_option_bg_" .. tostring(option_index)
+		local option_bg = get_options_xml():InitStatic("black_option_rounded_rect", _shell)
+		option_bg:SetWndPos(vector2():set(padding, padding))
+		option_bg:SetWndSize(vector2():set(texture_width - (padding * 2), texture_height - (padding * 2)))
+		option_bg:SetTextureColor(GetARGB(alpha, 225, 225, 225))
+		get_menu_ref():Register(option_bg, controll_option_bg_name)
+		
+		local displayText = "text_" .. tostring(option_index)
+		local ctrl_name = "txt_"  .. tostring(option_index)
+		
+		local CTRLText = get_options_xml():InitStatic("ixr_product_sans_12_l", option_bg)
+		CTRLText:SetWndPos(vector2():set(5, 8))
+		CTRLText:SetWndSize(vector2():set(250, 25))
+		CTRLText:TextControl():SetText(display_text)
+		CTRLText:TextControl():SetTextColor(GetARGB(255, 200, 200, 200))
+		CTRLText:Show(true)
+		get_menu_ref():Register(CTRLText, "ixr_controll_label_"  .. tostring(option_index))
+		
+		register_checkbox(
+			"controll_cb_" .. tostring(option_index),
+			option_bg:GetWidth() - ixr_options.controlls_defines.check_box_width - 3.5,
+			4,
+			ixr_options.controlls_defines.check_box_alpha,
+			false,
+			option_bg,
+			function (value, ctrl) SemiLog("Single Check Box:".. tostring(option_index)..":changed:"..tostring(value) .. " -- " .. tostring(ctrl)) end
+		)
+	end)
+
+end
+
+
+function add_option_group(option_index, padding, alpha, count, group_display_text, option_display_text)
+	local controll_group_option_bg_name = "groupp_option_bg_" .. tostring(option_index)
+	local controll_option_bg_name = "groupped_option_bg_" .. tostring(option_index)
+	local texture_width = ixr_options.controlls_defines.option_plane_width
+	local texture_height = ixr_options.controlls_defines.option_plane_height
+	local shell = add_option_shell(option_index, texture_width, texture_height)
+	
+	local before_y_offset = padding
+	local after_y_offset = padding + padding + padding
+	local group_bg = get_options_xml():InitStatic("black_texture", shell)
+	group_bg:SetWndPos(vector2():set(0, before_y_offset))
+	group_bg:SetWndSize(vector2():set(1, 1))
+	group_bg:SetTextureColor(GetARGB(alpha, 225, 225, 225))
+	get_menu_ref():Register(group_bg, controll_group_option_bg_name)
+	
+	local group_name_text_height = 25
+	local group_name_controll = get_options_xml():InitStatic("ixr_product_sans_16_l", group_bg)
+	group_name_controll:SetWndPos(vector2():set(padding, before_y_offset + padding))
+	group_name_controll:SetWndSize(vector2():set(texture_width - padding, group_name_text_height))
+	group_name_controll:TextControl():SetText(group_display_text)
+	group_name_controll:TextControl():SetTextColor(GetARGB(255, 200, 200, 200))
+	group_name_controll:Show(true)
+	get_menu_ref():Register(group_name_controll, "ixr_group_controll_label_"  .. tostring(option_index))
+	
+	local sum_height = 0
+	local y_offset = group_name_text_height + padding
+	for i=1, count do
+		local option_bg = get_options_xml():InitStatic("black_option_rounded_rect", group_bg)
+		option_bg:SetWndPos(vector2():set(padding, padding + y_offset))
+		option_bg:SetWndSize(vector2():set(texture_width - (padding * 2), texture_height - (padding * 2)))
+		option_bg:SetTextureColor(GetARGB(alpha, 225, 225, 225))
+		get_menu_ref():Register(option_bg, controll_option_bg_name .. "_" .. tostring(i))
+		
+		local option_name_controll = get_options_xml():InitStatic("ixr_product_sans_12_l", group_bg)
+		option_name_controll:SetWndPos(vector2():set(padding + padding, 5 + padding + y_offset))
+		option_name_controll:SetWndSize(vector2():set(texture_width - padding, group_name_text_height))
+		option_name_controll:TextControl():SetText(option_display_text .. " [ " .. tostring(i) .. " ]")
+		option_name_controll:TextControl():SetTextColor(GetARGB(255, 200, 200, 200))
+		option_name_controll:Show(true)
+		get_menu_ref():Register(option_name_controll, "ixr_option_name_label_"  .. tostring(option_index) .. "_" .. tostring(i))
+		
+		register_checkbox(
+			"controll_cb_" .. tostring(option_index) .. "_" .. tostring(i),
+			option_bg:GetWidth() - ixr_options.controlls_defines.check_box_width - 3.5,
+			4,
+			ixr_options.controlls_defines.check_box_alpha,
+			false,
+			option_bg,
+			function (value, ctrl) SemiLog("Group Check Box:".. tostring(option_index)..":changed:"..tostring(value) .. " -- " .. tostring(ctrl)) end
+		)
+		
+		y_offset = y_offset + option_bg:GetHeight() + padding
+		sum_height = sum_height + option_bg:GetHeight() + padding
+	end
+	
+	local last_height = shell:GetHeight()
+	shell:SetWndSize(vector2():set(texture_width + padding, before_y_offset + y_offset + after_y_offset))
+	group_bg:SetWndSize(vector2():set(texture_width + padding, y_offset + padding + padding))
+end
+
+function add_option_shell(shell_index, width, height, fn_fillable)
+	local controll_shell_name = "option_shell_" .. tostring(shell_index)
+	local shell = get_options_xml():InitStatic("black_texture", nil)
+	shell:SetWndPos(vector2():set(0, 0))
+	shell:SetWndSize(vector2():set(width, height))
+	shell:SetTextureColor(GetARGB(0, 225, 225, 225))
+	get_menu_ref():Register(shell, controll_shell_name)
+	
+	if fn_fillable ~= nil then
+		fn_fillable(shell)
+	end
+	
+	local scroll_v = get_controll("options_scroll")
+	scroll_v:AddWindow(shell, false)
+	scroll_v:SetAutoDelete(false)
+	
+	return shell
+end
+
+class "IXRCheckBox" (CUIStatic)
+function IXRCheckBox:__init(check_box_ctrl_name, x, y, alpha, state, _callback, _ref)
+	super()
+	
+	self.is_checked = state
+	self.on_change_callback = _callback
+	self.check_box_ctrl_name = check_box_ctrl_name .. "_" .. tostring(getNextEventIndex())
+	
+	local w = ixr_options.controlls_defines.check_box_width
+	local h = ixr_options.controlls_defines.check_box_height
+	
+	self:SetWndSize(vector2():set(x, y))
+	self:SetWndPos(vector2():set(w, h))
+	
+	self.check_box_background = get_options_xml():InitStatic("check_box_background", _ref)
+	self.check_box_background:SetWndPos(vector2():set(x, y))
+	self.check_box_background:SetWndSize(vector2():set(w, h))
+	self.check_box_background:SetTextureColor(GetARGB(alpha, 255, 255, 255))
+	self.check_box_background:SetStretchTexture(true)
+	self.check_box_background:Show(false)
+	
+	self.check_box_on = get_options_xml():Init3tButton("check_box_on", _ref)
+	self.check_box_on:SetWndPos(vector2():set(x, y))
+	self.check_box_on:SetWndSize(vector2():set(w, h))
+	self.check_box_on:SetTextureColor(GetARGB(alpha, 255, 255, 255))
+	self.check_box_on:SetStretchTexture(true)
+	self.check_box_on:Show(false)
+	
+	self.check_box_off = get_options_xml():Init3tButton("check_box_off", _ref)
+	self.check_box_off:SetWndPos(vector2():set(x, y))
+	self.check_box_off:SetWndSize(vector2():set(w, h))
+	self.check_box_off:SetTextureColor(GetARGB(alpha, 255, 255, 255))
+	self.check_box_off:SetStretchTexture(true)
+	self.check_box_off:Show(false)
+	
+	get_menu_ref():Register(self.check_box_off, self.check_box_ctrl_name .. "_check_box_off")
+	get_menu_ref():AddCallback(self.check_box_ctrl_name .. "_check_box_off", ui_events.BUTTON_CLICKED, function () self:SwitchState() end, get_menu_ref())
+	
+	get_menu_ref():Register(self.check_box_on, self.check_box_ctrl_name .. "_check_box_on")
+	get_menu_ref():AddCallback(self.check_box_ctrl_name .. "_check_box_on", ui_events.BUTTON_CLICKED, function () self:SwitchState() end, get_menu_ref())
+end
+
+function IXRCheckBox:Show(flag)
+	self.check_box_background:Show(flag)
+	self.check_box_on:Show(flag)
+	self.check_box_off:Show(flag)
+	
+	if flag then
+		self:OnChangeState()
+	end
+end
+
+function IXRCheckBox:SwitchState()
+	self:SetState(not self:IsChecked())
+end
+
+function IXRCheckBox:OnChangeState()
+	self.check_box_on:Show(false)
+	self.check_box_off:Show(false)
+	
+	if self:IsChecked() then
+		self.check_box_on:Show(true)
+	else
+		self.check_box_off:Show(true)
+	end
+	
+	if self.on_change_callback then
+		self.on_change_callback(self:IsChecked(), self.check_box_ctrl_name)
+	end
+end
+
+function IXRCheckBox:SetState(state)
+	self.is_checked = state
+	self:OnChangeState()
+end
+
+function IXRCheckBox:IsChecked()
+	return self.is_checked
+end
+
+
+class "AddonItem" (CUIListBoxItem)
+
+function AddonItem:__init(wnd_size, icon_path, addon_name, color_addon_name, addon_platform, color_platform, addon_version, color_version, addon_status, color_status) super()
+	self:SetWndSize(wnd_size)
+	
+	self.y_offset = 10
+	self.addon_display_name = addon_name
+	
+	self.addon_background = get_options_xml():InitStatic("addon_background", self)
+	self.addon_background:SetStretchTexture(true)
+	self.addon_background:SetWndPos(vector2():set(5, 5))
+	self.addon_background:SetWndSize(vector2():set(222, 70))
+	self.addon_background:SetTextureColor(GetARGB(75, 255, 255, 255))
+	
+	self.addon_icon = get_options_xml():InitStatic("addon_icon", self)
+	self.addon_icon:InitTexture(icon_path)
+	self.addon_icon:SetStretchTexture(true)
+	self.addon_icon:SetWndPos(vector2():set(14, self.y_offset + 10))
+	self.addon_icon:SetWndSize(vector2():set(40, 40))
+	self.addon_icon:SetTextureColor(GetARGB(200, 255, 255, 255))
+	
+	self.addon_name = get_options_xml():InitStatic("ixr_product_sans_16_l", self)
+	self.addon_name:SetWndPos(vector2():set(64, self.y_offset))
+	self.addon_name:SetWndSize(vector2():set(250, 15))
+	self.addon_name:TextControl():SetText(addon_name)
+	self.addon_name:TextControl():SetTextColor(color_addon_name)
+	
+	self.addon_platform = get_options_xml():InitStatic("ixr_product_sans_12_l", self)
+	self.addon_platform:SetWndPos(vector2():set(64, self.y_offset + 15 + 2))
+	self.addon_platform:SetWndSize(vector2():set(250, 15))
+	self.addon_platform:TextControl():SetText("platform: " .. addon_platform)
+	self.addon_platform:TextControl():SetTextColor(color_platform)
+	
+	self.addon_version = get_options_xml():InitStatic("ixr_product_sans_12_l", self)
+	self.addon_version:SetWndPos(vector2():set(64, self.y_offset + 15 + 15 + 2 + 2))
+	self.addon_version:SetWndSize(vector2():set(250, 15))
+	self.addon_version:TextControl():SetText("addon version: " .. addon_version)
+	self.addon_version:TextControl():SetTextColor(color_version)
+	
+	self.addon_status = get_options_xml():InitStatic("ixr_product_sans_12_l", self)
+	self.addon_status:SetWndPos(vector2():set(64, self.y_offset + 15 + 15 + 15 + 2 + 2 + 2))
+	self.addon_status:SetWndSize(vector2():set(250, 15))
+	self.addon_status:TextControl():SetText("addon status: " .. addon_status)
+	self.addon_status:TextControl():SetTextColor(color_status)
+end
+
+
+function _on_main_menu_init_callbacks(_ref)
+	set_menu_ref(_ref)
+	
+	get_menu_ref():AddCallback("btn_options_ixr", ui_events.BUTTON_CLICKED, this.on_btn_options_ixr_clicked, _ref)
+end
+
+function on_ixr_options_exit_btn_clicked()
+	hide_options()
+	get_menu_ref().shniaga:Show(true)
+	get_menu_ref().shniaga:SetVisibleMagnifier(true)
+end
+
+function on_btn_options_ixr_clicked()
+	get_menu_ref().shniaga:SetVisibleMagnifier(false)
+	get_menu_ref().shniaga:Show(false)
+	draw_options()
+end
+
+-- #######################################
+-- #	 	 TOOLS METHODS 	  	 	 	 #
+-- #######################################
+
+function ixr_options.toLog(text, overwrite, log_name__auto)
+	if ixr_options.use_file_log then
+		ffx_dump_utils.write_to_file_log(text, overwrite, log_name__auto)
+	end
+	
+	if ixr_options.use_console_log then
+		ffx_dump_utils.write_to_console_log(text)
+	end
+end

@@ -425,6 +425,13 @@ end
 -- UI returned must be CUIScriptWnd
 function set_active_subdialog(section)
 	--printf("section=%s",section)
+	local tbl_dialog = {ui_wnd = nil}
+	SendScriptCallback("on_pda_set_active_subdialog", this, section, tbl_dialog)
+	
+	if tbl_dialog["ui_wnd"] ~= nil then
+		return tbl_dialog["ui_wnd"]
+	end
+	
 	if (section == "eptTasks") then 
 	
 	elseif (section == "eptRanking") then 

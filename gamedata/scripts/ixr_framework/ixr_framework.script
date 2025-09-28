@@ -31,6 +31,7 @@ local ixr_framework = {
 	modules_collect_info_function_name = "get_module_info",
 	dynamic_vars = {
 		is_initialized = false,
+		is_init_processing = false,
 		registered_modules = {},
 		loaded_modules = {},
 	},
@@ -86,6 +87,8 @@ Parameters:
 Return: (reference|exception) - Return reference to callable module or exception is module by alias or script name not exists (use check method before use it function is need skip errors).
 ]]
 function get_module(script_or_alias_name)
+	ixr_framework.init(false)
+	
 	return ixr_framework.get_module(script_or_alias_name)
 end
 
@@ -96,6 +99,8 @@ Parameters:
 Return: (bool) - Return true is module by alias or script name exists.
 ]]
 function is_module_loaded(script_or_alias_name)
+	ixr_framework.init(false)
+	
 	return ixr_framework.is_module_loaded(script_or_alias_name)
 end
 
@@ -117,12 +122,26 @@ function call_module_is_exists(script_or_alias_name, callback_fn, def_value)
 	return def_value
 end
 
+local counter = 0
+
 --#####################################################
 --#					SYSTEM	LOGIC					  #
 --#####################################################
-function ixr_framework.init()
+function ixr_framework.init(log_reinit)
+	counter = counter + 1
+	if log_reinit == nil then
+		log_reinit = true
+	end
+	
+	if ixr_framework.dynamic_vars.is_init_processing then
+		return
+	end
+
 	if ixr_framework.is_initialized() then
-		ixr_framework.on_skip_reinit()
+		if log_reinit then
+			ixr_framework.on_skip_reinit()
+		end
+		
 		return;
 	end
 	
@@ -130,6 +149,7 @@ function ixr_framework.init()
 		return;
 	end
 	
+	ixr_framework.dynamic_vars.is_init_processing = true
 	ixr_framework.dynamic_vars.is_initialized = false
 	ixr_framework.on_init_begin()
 	
@@ -143,6 +163,7 @@ function ixr_framework.init()
 	end
 	
 	ixr_framework.dynamic_vars.is_initialized = true
+	ixr_framework.dynamic_vars.is_init_processing = false
 	ixr_framework.dump_g_exports()
 	ixr_framework.on_init_end()
 end

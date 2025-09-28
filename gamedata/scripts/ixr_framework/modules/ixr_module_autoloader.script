@@ -169,6 +169,8 @@ function ixr_autoloader.init()
 	ixr_autoloader.on_init_end()
 	ixr_autoloader.dynamic_vars.is_initialized = true
 	
+	SendScriptCallback("on_ixr_autoloader_initialized", ixr_autoloader)
+	
 	return true
 end
 

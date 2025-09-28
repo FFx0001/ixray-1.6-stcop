@@ -95,6 +95,8 @@ function HasStorageVar(var_name)
 	if IsModuleLoaded("ixr_storage") then
 		return GetModule("ixr_storage").has_var(ffx_callable_utils.find_caller_source(3), var_name)
 	end
+	
+	return false
 end
 
 --[[
@@ -108,6 +110,8 @@ function GetStorageVar(var_name, default_value)
 	if IsModuleLoaded("ixr_storage") then
 		return GetModule("ixr_storage").get_var(ffx_callable_utils.find_caller_source(3), var_name, default_value)
 	end
+	
+	return default_value
 end
 
 --[[
@@ -122,6 +126,8 @@ function SetStorageVar(var_name, var_value, var_type)
 	if IsModuleLoaded("ixr_storage") then
 		return GetModule("ixr_storage").set_var(ffx_callable_utils.find_caller_source(3), var_name, var_value, var_type)
 	end
+	
+	return false
 end
 
 --[[
@@ -134,6 +140,8 @@ function UnsetStorageVar(var_name)
 	if IsModuleLoaded("ixr_storage") then
 		return GetModule("ixr_storage").remove_var(ffx_callable_utils.find_caller_source(3), var_name)
 	end
+	
+	return false
 end
 
 --  ###############################################################################
@@ -159,6 +167,8 @@ function HasStorageObjectVar(object_id, var_name)
 			
 		return obj_table_cache[var_name]["var_value"] ~= nil
 	end
+	
+	return false
 end
 
 --[[
@@ -189,6 +199,8 @@ function GetStorageObjectVar(object_id, var_name, default_value, retrive_raw_wit
 			return obj_table_cache[var_name]["var_value"] or default_value
 		end
 	end
+	
+	return default_value
 end
 
 --[[
@@ -218,6 +230,8 @@ function SetStorageObjectVar(object_id, var_name, var_value, var_type)
 		
 		return _module.set_var(__key, _obj_table_name, obj_table_cache, "table")
 	end
+	
+	return false
 end
 
 --[[
@@ -238,6 +252,8 @@ function UnsetStorageObjectVar(object_id, var_name)
 		
 		return _module.set_var(__key, _obj_table_name, obj_table_cache, "table")
 	end
+	
+	return false
 end
 
 --  #################################################################################
@@ -254,6 +270,8 @@ function HasStorageSharedVar(var_name)
 	if IsModuleLoaded("ixr_storage") then
 		return GetModule("ixr_storage").has_var("shared_chunk", var_name)
 	end
+	
+	return false
 end
 
 --[[
@@ -267,6 +285,8 @@ function GetStorageSharedVar(var_name, default_value)
 	if IsModuleLoaded("ixr_storage") then
 		GetModule("ixr_storage").get_var("shared_chunk", var_name, default_valuec)
 	end
+	
+	return default_value
 end
 
 --[[
@@ -281,6 +301,8 @@ function SetStorageSharedVar(var_name, var_value, var_type)
 	if IsModuleLoaded("ixr_storage") then
 		return GetModule("ixr_storage").set_var("shared_chunk", var_name, var_value, var_type)
 	end
+	
+	return false
 end
 
 --[[
@@ -293,6 +315,8 @@ function UnsetStorageSharedVar(var_name)
 	if IsModuleLoaded("ixr_storage") then
 		return GetModule("ixr_storage").remove_var("shared_chunk", var_name)
 	end
+	
+	return false
 end
 
 
@@ -366,4 +390,22 @@ function UnsetRegistryValue(key, subkey)
 	end
 	
 	return false
+end
+
+
+-- ##############################################################
+-- #						OTHER								#
+-- ##############################################################
+function GetHexColor(hexColor)
+    hexColor = hexColor:gsub("#", "")
+    if #hexColor == 6 then
+        hexColor = "FF" .. hexColor
+    end
+	
+    local alpha = tonumber(hexColor:sub(1, 2), 16)
+    local red = tonumber(hexColor:sub(3, 4), 16)
+    local green = tonumber(hexColor:sub(5, 6), 16)
+    local blue = tonumber(hexColor:sub(7, 8), 16)
+    
+    return GetARGB(alpha, red, green, blue)
 end

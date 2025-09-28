@@ -6,7 +6,7 @@ local ini = system_ini()
  Отсутствие коллбека в движке не вызывает вылет
  Отсутсвие вызываемого метода в биндере не вызывает вылет
 --]] 
-local use_callback_logs = true -- логирование подписки и отписки для коллбеков
+local use_callback_logs = false -- логирование подписки и отписки для коллбеков
 local all_callbacks = {
 	["patrol_path_in_point"] 	= "waypoint_callback",
 	["hit"] 					= "hit_callback",

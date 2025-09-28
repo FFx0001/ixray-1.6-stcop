@@ -12,8 +12,9 @@ function configure(_ref_ixr_framework)
 	--------------------------------------------
 	-- REGISTRE MODULES CALLED AS FIRSTLY HERE ->
 	--------------------------------------------
-	_ref_ixr_framework.load_module_by_script_name("ixr_module_global_registry") -- alias:[ixr_registry]
 	_ref_ixr_framework.load_module_by_script_name("ixr_module_signals") -- alias:[ixr_signals]
+	_ref_ixr_framework.load_module_by_script_name("ixr_module_global_registry") -- alias:[ixr_registry]
+	_ref_ixr_framework.load_module_by_script_name("ixr_module_options") -- -- alias:[ixr_options]
 	
 	--------------------------------------------
 	-- REGISTRE MODULES CALLED AS MIDDLE HERE ->

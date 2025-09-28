@@ -1,0 +1,6 @@
+local ini = system_ini()
+
+
+function has_section(section)
+	return ini and section and section ~= "" and ini:section_exist(section)
+end

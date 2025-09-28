@@ -142,7 +142,7 @@ function configure(_ref_ixr_signals)
 	_ref_ixr_signals.add_intercept("monster_on_hit_callback",           	{"monster_game_object", "power_number", "hit_direction_vector", "who_game_object", "bone_index_number"}) 
 	_ref_ixr_signals.add_intercept("monster_on_net_spawn",             		{"monster_game_object", "monster_server_object"}) 
 	_ref_ixr_signals.add_intercept("monster_on_net_destroy",            	{"monster_game_object"}) 
-	_ref_ixr_signals.add_intercept("monster_on_death_callback",         	{"monster_game_object", "who_game_object"}) 
+	_ref_ixr_signals.add_intercept("monster_on_death_callback",         	{"monster_game_object", "who_game_object"}) -- without poltergeist
 	_ref_ixr_signals.add_intercept("monster_on_death",         				{"monster_game_object", "who_game_object"}) 
 	_ref_ixr_signals.add_intercept("monster_on_actor_use_callback",     	{"monster_game_object", "who_game_object"}) 
 	_ref_ixr_signals.add_intercept("monster_on_use",     					{"monster_game_object", "who_game_object", "is_alive_bool"}) 
@@ -182,8 +182,9 @@ function configure(_ref_ixr_signals)
 	_ref_ixr_signals.add_intercept("map_spot_menu_add_property",           	{"property_CUIWindow", "id_number", "level_name_string", "hint_string"}) -- возможно есть дуликат вызова
 	_ref_ixr_signals.add_intercept("map_spot_menu_property_clicked",        {"property_CUIWindow", "map_spot_property_id_number", "map_spot_property_level_name_string", "prop_string"}) -- возможно есть дуликат вызова
 	_ref_ixr_signals.add_intercept("main_menu_on_keyboard",                 {"dik_number", "keyboard_action_number", "CUIScriptWnd", "is_level_present_bool"}) 
-	_ref_ixr_signals.add_intercept("main_menu_on_init",                     {"CUIScriptWnd"}) 
-	_ref_ixr_signals.add_intercept("main_menu_on_init_callbacks",           {"CUIScriptWnd"}) 
+	_ref_ixr_signals.add_intercept("main_menu_on_init",                     {"CUIScriptWnd"}) -- 1
+	_ref_ixr_signals.add_intercept("main_menu_on_init_controlls",    		{"CUIScriptWnd"}) -- 2
+	_ref_ixr_signals.add_intercept("main_menu_on_init_callbacks",           {"CUIScriptWnd"}) -- 3
 	_ref_ixr_signals.add_intercept("main_menu_on_quit",                     {"CUIScriptWnd"}) 
 
 	_ref_ixr_signals.add_intercept("on_game_load",                          {"binder"}) -- actor net_spawn
@@ -220,4 +221,9 @@ function configure(_ref_ixr_signals)
 	
 	_ref_ixr_signals.add_intercept("CInventoryBox_OnInvBoxCanTakeItem",     {"box_game_object", "item_game_object", "flags_table"}) -- { ret_value = true }
 	_ref_ixr_signals.add_intercept("CInventoryBox_OnInvBoxCanPlaceItem",    {"box_game_object", "item_game_object", "flags_table"}) -- { ret_value = true }
+	
+	_ref_ixr_signals.add_intercept("on_ixr_autoloader_initialized", 		{"ref_ixr_autoloader"}) -- IXR AUTOLOADER
+	_ref_ixr_signals.add_intercept("on_init_ixr_options", 					{"ref_ixr_options"}) -- IXR OPTIONS
+	
+	if ffx_death_manager then _ref_ixr_signals.add_intercept("ffx_death_manager_on_corpse_removed",    {"object_id", "population_data"}) end
 end
