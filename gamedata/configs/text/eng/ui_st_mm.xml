@@ -570,6 +570,12 @@
 	<string id="ui_mm_options_n">
 		<text>Options</text>
 	</string>
+	<string id="ui_mm_options_ixr">
+		<text>IXR Options</text>
+	</string>
+	<string id="ui_mm_options_ixr">
+		<text>IXR Options</text>
+	</string>
 	<string id="ui_mm_particles_distance">
 		<text>Particle distance</text>
 	</string>
@@ -922,7 +928,7 @@
 		<text>The unique nickname cannot contain spaces</text>
 	</string>
 	<string id="mp_gp_unique_nick_bad_first_symbol">
-		<text>The unique nickname may not begin with a number or any of the following symbols: '@', '+', ':' or ‘#’</text>
+		<text>The unique nickname may not begin with a number or any of the following symbols: '@', '+', ':' or ï¿½#ï¿½</text>
 	</string>
 	<string id="st_opt_ultra">
 		<text>very high</text>

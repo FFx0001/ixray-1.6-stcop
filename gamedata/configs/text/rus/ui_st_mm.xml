@@ -570,6 +570,9 @@
 	<string id="ui_mm_options_n">
 		<text>Опции</text>
 	</string>
+	<string id="ui_mm_options_ixr">
+		<text>IXR Опции</text>
+	</string>
 	<string id="ui_mm_particles_distance">
 		<text>Дальность частиц</text>
 	</string>
