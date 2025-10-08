@@ -222,6 +222,8 @@ function configure(_ref_ixr_signals)
 	_ref_ixr_signals.add_intercept("CInventoryBox_OnInvBoxCanTakeItem",     {"box_game_object", "item_game_object", "flags_table"}) -- { ret_value = true }
 	_ref_ixr_signals.add_intercept("CInventoryBox_OnInvBoxCanPlaceItem",    {"box_game_object", "item_game_object", "flags_table"}) -- { ret_value = true }
 	
+	_ref_ixr_signals.add_intercept("main_menu_update", 						{"main_menu_update"})
+	
 	_ref_ixr_signals.add_intercept("on_ixr_autoloader_initialized", 		{"ref_ixr_autoloader"}) -- IXR AUTOLOADER
 	_ref_ixr_signals.add_intercept("on_init_ixr_options", 					{"ref_ixr_options"}) -- IXR OPTIONS
 	

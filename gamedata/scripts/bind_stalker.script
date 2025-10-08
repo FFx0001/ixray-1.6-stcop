@@ -178,6 +178,10 @@ end
 -- END IX-Ray 
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:take_item_from_box(box, item)
+	if not box or not item then
+		return
+	end
+	
 	local box_name = box:name()
 	SendScriptCallback("actor_on_item_take_from_box", box, item) -- IX-Ray
 end
@@ -187,6 +191,11 @@ function actor_binder:info_callback(npc, info_id)
 	printf("*INFO*: npc='%s' id='%s'", npc:name(), info_id)
 	--' Сюжет
 	-- Отметки на карте
+	
+	if not npc or not info_id then
+		return
+	end
+	
 	SendScriptCallback("actor_on_info_callback", npc, info_id) -- IX-Ray
 end
 ----------------------------------------------------------------------------------------------------------------------
@@ -195,6 +204,10 @@ function actor_binder:on_trade(item, sell_bye, money)
 		 game_stats.money_trade_update (money)
 	else
 		 game_stats.money_trade_update (-money)
+	end
+	
+	if not item then
+		return
 	end
 	
 	SendScriptCallback("actor_on_trade", item, sell_bye, money) -- IX-Ray

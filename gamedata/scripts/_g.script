@@ -1085,7 +1085,9 @@ end
 function CUIActorMenu_CanMoveToPartner(npc_gobj, item_gobj, zero_a, zero_b, itmWeight, partner_inv_weight, partner_max_weight)
 	local flags = { ret_value = true }
 	
-	SendScriptCallback("CUIActorMenu_CanMoveToPartner", npc_gobj, item_gobj, itmWeight, partner_inv_weight, partner_max_weight, flags)
+	if npc_gobj and npc_gobj:id() and item_gobj and item_gobj:id() then
+		SendScriptCallback("CUIActorMenu_CanMoveToPartner", npc_gobj, item_gobj, itmWeight, partner_inv_weight, partner_max_weight, flags)
+	end
 	
 	return flags.ret_value
 end
@@ -1105,7 +1107,9 @@ function CInventoryBox_OnInvBoxCanTakeItem(box, item)
 
 	local flags = { ret_value = true }
 
-	SendScriptCallback("CInventoryBox_OnInvBoxCanTakeItem", box, item, flags)
+	if box and box:id() and item and item:id() then
+		SendScriptCallback("CInventoryBox_OnInvBoxCanTakeItem", box, item, flags)
+	end
 
 	return flags.ret_value
 end
@@ -1114,8 +1118,10 @@ end
 function CInventoryBox_OnInvBoxCanPlaceItem(box, item)
 
 	local flags = { ret_value = true }
-
-	SendScriptCallback("CInventoryBox_OnInvBoxCanPlaceItem", box, item, flags)
+	
+	if box and box:id() and item and item:id() then
+		SendScriptCallback("CInventoryBox_OnInvBoxCanPlaceItem", box, item, flags)
+	end
 
 	return flags.ret_value
 end

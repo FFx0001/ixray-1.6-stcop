@@ -24,6 +24,11 @@ function main_menu:__init() super()
     xr_s.on_main_menu_on()     						 --' Distemper 03.2008 --
 end
 
+function main_menu:Update()
+	CUIScriptWnd.Update(self)
+	SendScriptCallback("main_menu_update", self)
+end
+
 function main_menu:__finalize()
 end
 
@@ -41,12 +46,11 @@ function main_menu:InitControls()
 	_ver:TextControl():SetText("ver. " .. mm:GetGSVer())
 	
 	-- IX-Ray start
-	local btn
-	btn = self.main_xml:Init3tButton("english_lang", self)
-	self:Register(btn, "english_lang")
+	self.eng_lang_btn = self.main_xml:Init3tButton("english_lang", self)
+	self:Register(self.eng_lang_btn, "english_lang")
 	
-	btn = self.main_xml:Init3tButton("russian_lang", self)
-	self:Register(btn, "russian_lang")
+	self.ru_lang_btn = self.main_xml:Init3tButton("russian_lang", self)
+	self:Register(self.ru_lang_btn, "russian_lang")
 
 	SendScriptCallback("main_menu_on_init_controlls", self)
 	-- IX-Ray end
