@@ -1159,6 +1159,20 @@ function CUIActorMenu_OnItemDropped(first_item, second_item, from_slot, to_slot)
 		return true;
 	end
 	
+	local first_item_id = nil
+	local first_item_section = nil
+	if first_item then
+		first_item_id = first_item:id() 
+		first_item_section = first_item:section()
+	end
+	
+	local second_item_id = nil
+	local second_item_section = nil
+	if second_item then
+		second_item_id = second_item:id() 
+		second_item_section = second_item:section()
+	end
+	
 	if (first_item and second_item) then
 		SendScriptCallback("CUIActorMenu_OnItemDropped", first_item, second_item, from_slot, to_slot)
 		SendScriptCallback("ActorMenu_on_item_drag_drop", first_item, second_item, from_slot, to_slot)

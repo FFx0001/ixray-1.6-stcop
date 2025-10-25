@@ -396,16 +396,24 @@ end
 -- ##############################################################
 -- #						OTHER								#
 -- ##############################################################
-function GetHexColor(hexColor)
-    hexColor = hexColor:gsub("#", "")
-    if #hexColor == 6 then
-        hexColor = "FF" .. hexColor
+
+function GetARGBColorFromHex(RGBHexColor, alpha)
+    RGBHexColor = RGBHexColor:gsub("#", "")
+   
+    if #RGBHexColor == 8 then
+        RGBHexColor = RGBHexColor:sub(3, 8)
     end
-	
-    local alpha = tonumber(hexColor:sub(1, 2), 16)
-    local red = tonumber(hexColor:sub(3, 4), 16)
-    local green = tonumber(hexColor:sub(5, 6), 16)
-    local blue = tonumber(hexColor:sub(7, 8), 16)
+
+    local red = tonumber(RGBHexColor:sub(1, 2), 16)
+    local green = tonumber(RGBHexColor:sub(3, 4), 16)
+    local blue = tonumber(RGBHexColor:sub(5, 6), 16)
     
     return GetARGB(alpha, red, green, blue)
+end
+
+function GetXmlArgbColorFromHex(RGBHexColor, alpha)
+    RGBHexColor = RGBHexColor:gsub("#", "")
+    if #RGBHexColor == 8 then  RGBHexColor = RGBHexColor:sub(3, 8) end
+
+    return "%c["..tostring(table.concat({ alpha, tonumber(RGBHexColor:sub(1, 2), 16), tonumber(RGBHexColor:sub(3, 4), 16), tonumber(RGBHexColor:sub(5, 6), 16) }, ",")).."]"
 end

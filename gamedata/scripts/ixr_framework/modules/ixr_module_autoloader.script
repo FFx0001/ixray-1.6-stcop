@@ -27,6 +27,7 @@ local ixr_autoloader = {
 	fs_scripts_path = "$game_scripts$",
 	fs_scripts_extension = ".script",
 	dynamic_vars = {
+		ignored_patterns_info = {},
 		ignored_scripts = {},
 		all_registered_scripts = {},
 		is_initialized = false,
@@ -197,11 +198,23 @@ end
 
 function ixr_autoloader.is_script_ignored(script_name)
 	if ffx_compare_utils.is_empty_string(script_name) or ffx_table_utils.is_contains(ixr_autoloader.dynamic_vars.ignored_scripts, script_name) then
+		if ixr_autoloader.dynamic_vars.ignored_patterns_info[script_name] == nil then
+			ixr_autoloader.dynamic_vars.ignored_patterns_info[script_name] = {}
+		end
+		
+		table.insert(ixr_autoloader.dynamic_vars.ignored_patterns_info[script_name], script_name)
+		
 		return true
 	end
 	
 	for k, v in pairs(ixr_autoloader.dynamic_vars.ignored_scripts) do
 		if ffx_compare_utils.has_pattern(script_name, v) then
+			if ixr_autoloader.dynamic_vars.ignored_patterns_info[script_name] == nil then
+				ixr_autoloader.dynamic_vars.ignored_patterns_info[script_name] = {}
+			end
+			
+			table.insert(ixr_autoloader.dynamic_vars.ignored_patterns_info[script_name], v)
+			
 			return true
 		end
 	end
@@ -343,7 +356,19 @@ end
 
 function ixr_autoloader.on_register_script(is_file_ignored, is_file_autoloaded, is_file_skip, script_name, full_name)
 	if ixr_autoloader.show_all_detected_script_names_is_logging_enabled then
-		 local to_log_info = "[READ]: " .. tostring(full_name)
+		local tail = ""
+		
+		if is_file_ignored and ixr_autoloader.dynamic_vars.ignored_patterns_info[script_name] ~= nil then
+			local patterns = ixr_autoloader.dynamic_vars.ignored_patterns_info[script_name] or {}
+			local quoted_patterns = {}
+			for i, pattern in ipairs(patterns) do
+				quoted_patterns[i] = "\"" .. pattern .. "\""
+			end
+			
+			tail = "  ignore_by_patterns:[" .. table.concat(quoted_patterns, ", ") .. "]"
+		end
+		
+		local to_log_info = "[READ]: " .. tostring(full_name)
 		 
 		if is_file_skip and not is_file_ignored and not is_file_autoloaded then
 			to_log_info = "☐ " .. to_log_info
@@ -357,7 +382,7 @@ function ixr_autoloader.on_register_script(is_file_ignored, is_file_autoloaded, 
 			to_log_info = "▣ " .. to_log_info
 		end
 		 
-		 ixr_autoloader.toFileLog(to_log_info, false)
+		 ixr_autoloader.toFileLog(to_log_info .. tostring(tail), false)
 	end
 end
 

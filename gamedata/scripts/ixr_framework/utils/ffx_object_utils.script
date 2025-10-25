@@ -1,4 +1,41 @@
+local actor_exists = false
 
+function has_actor()
+	if actor_exists then
+		return true
+	end
+	
+	actor_exists = db.actor ~= nil
+	
+	return actor_exists
+end
+
+-- Вернуть серверный обьект по ид если валидный или false
+function se_object_by_id_or_false(id)
+	return se_object_or_false(alife():object(id))
+end
+
+-- Вернуть серверный обьект если валидный или false
+function se_object_or_false(se_obj)
+	if se_obj and se_obj.id then
+		return se_obj
+	end
+
+	return false
+end
+
+-- Вернуть клиентский обьект если валидный или false
+function game_object_or_false(g_obj)
+	if g_obj and g_obj:id() then
+		return g_obj
+	end
+
+	return false
+end
+
+function is_actor_alive()
+	return has_actor() and db.actor:alive()
+end
 
 function safe_release(p,force)
 	local sim = alife()
@@ -59,4 +96,36 @@ function safe_bone_pos(npc, bone)
 	end
 
 	return pos
+end
+
+function safe_release_by_id(id)
+	if id then
+		local sobj = alife():object(id)
+		if sobj and sobj.id then
+			alife():release(sobj, true)
+		end
+	end
+end
+
+--safe
+function set_condition_by_id(id, float_condition)
+	level.client_spawn_manager():add(id, -1, function (id_gobj, gobj_client)
+		set_condition(gobj_client, float_condition)
+		return ;
+	end)
+end
+
+--safe
+function set_condition(gobj_client, float_condition)
+	if gobj_client and gobj_client:id() then
+		if float_condition <= 0 then
+			float_condition = 0.0
+		end
+		
+		if float_condition >= 1.0 then
+			float_condition = 1.0
+		end
+		
+		gobj_client:set_condition(float_condition)
+	end
 end

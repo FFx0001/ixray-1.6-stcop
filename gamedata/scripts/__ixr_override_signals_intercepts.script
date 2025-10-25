@@ -50,24 +50,28 @@ function configure(_ref_ixr_signals)
 	_ref_ixr_signals.add_intercept("on_key_press",                         	{"dik_key_number"})	
 	_ref_ixr_signals.add_intercept("on_key_release",                     	{"dik_key_number"})	
 	_ref_ixr_signals.add_intercept("on_key_hold",                          	{"dik_key_number"})	
+	
 	_ref_ixr_signals.add_intercept("on_mouse_move",                        	{"dx_number", "dy_number"})	
 	_ref_ixr_signals.add_intercept("on_mouse_wheel",                      	{"direction_number"})	 
 	
-	_ref_ixr_signals.add_intercept("on_actor_wnd_mode_switch",          	{"wnd_mode_number"})
+	_ref_ixr_signals.add_intercept("on_actor_wnd_mode_switch",          	{"wnd_mode_number"}) -- 0 (Undefined) | 1 (Inventory) | 2 (Trade) | 3 (Upgrade) | 4 (DeadBodySearch) | 10 (Talk dialog  show) | 11 (Talk dialog  hide)
 
 	_ref_ixr_signals.add_intercept("on_actor_wnd_closed",          			{"wnd_mode_number"})
 	_ref_ixr_signals.add_intercept("on_actor_wnd_opened",          			{"wnd_mode_number"})	
 	
-	_ref_ixr_signals.add_intercept("on_actor_inventory_wnd_opened",			{"wnd_mode_number"})	
-	_ref_ixr_signals.add_intercept("on_actor_trade_wnd_opened",   			{"wnd_mode_number"})	
-	_ref_ixr_signals.add_intercept("on_actor_upgrade_wnd_opened",  			{"wnd_mode_number"})	
-	_ref_ixr_signals.add_intercept("on_actor_dead_body_search_wnd_opened",	{"wnd_mode_number"})	
-	_ref_ixr_signals.add_intercept("on_actor_dialog_wnd_showed",    		{"wnd_mode_number", "npc_id_number_or_nil"})	
+	_ref_ixr_signals.add_intercept("on_actor_inventory_wnd_opened",			{"wnd_mode_number"})
+	_ref_ixr_signals.add_intercept("on_actor_inventory_wnd_closed",     	{"wnd_mode_number"})
 	
-	_ref_ixr_signals.add_intercept("on_actor_inventory_wnd_closed",     	{"wnd_mode_number"})	
-	_ref_ixr_signals.add_intercept("on_actor_trade_wnd_closed",    			{"wnd_mode_number"})	
-	_ref_ixr_signals.add_intercept("on_actor_upgrade_wnd_closed",   		{"wnd_mode_number"})	
-	_ref_ixr_signals.add_intercept("on_actor_dead_body_search_wnd_closed", 	{"wnd_mode_number"})	
+	_ref_ixr_signals.add_intercept("on_actor_trade_wnd_opened",   			{"wnd_mode_number"})
+	_ref_ixr_signals.add_intercept("on_actor_trade_wnd_closed",    			{"wnd_mode_number"})
+	
+	_ref_ixr_signals.add_intercept("on_actor_upgrade_wnd_opened",  			{"wnd_mode_number"})
+	_ref_ixr_signals.add_intercept("on_actor_upgrade_wnd_closed",   		{"wnd_mode_number"})
+	
+	_ref_ixr_signals.add_intercept("on_actor_dead_body_search_wnd_opened",	{"wnd_mode_number"})	
+	_ref_ixr_signals.add_intercept("on_actor_dead_body_search_wnd_closed", 	{"wnd_mode_number"})
+	
+	_ref_ixr_signals.add_intercept("on_actor_dialog_wnd_showed",    		{"wnd_mode_number", "npc_id_number_or_nil"})	
 	_ref_ixr_signals.add_intercept("on_actor_dialog_wnd_closed",  			{"wnd_mode_number", "npc_id_number_or_nil"})	
 	
 	
@@ -185,7 +189,7 @@ function configure(_ref_ixr_signals)
 	_ref_ixr_signals.add_intercept("main_menu_on_init",                     {"CUIScriptWnd"}) -- 1
 	_ref_ixr_signals.add_intercept("main_menu_on_init_controlls",    		{"CUIScriptWnd"}) -- 2
 	_ref_ixr_signals.add_intercept("main_menu_on_init_callbacks",           {"CUIScriptWnd"}) -- 3
-	_ref_ixr_signals.add_intercept("main_menu_on_quit",                     {"CUIScriptWnd"}) 
+	_ref_ixr_signals.add_intercept("main_menu_on_quit",                     {"CUIScriptWnd"}) -- 4
 
 	_ref_ixr_signals.add_intercept("on_game_load",                          {"binder"}) -- actor net_spawn
 	_ref_ixr_signals.add_intercept("on_console_execute",                    {"string", "string", "string", "..."})
@@ -211,10 +215,13 @@ function configure(_ref_ixr_signals)
 	_ref_ixr_signals.add_intercept("actor_on_npc_drag_drop_item_on_item", 	{"first_item_game_object", "second_item_game_object", "from_slot_number", "to_slot_number"})	
 	_ref_ixr_signals.add_intercept("actor_on_actor_drag_drop_item_on_item",	{"first_item_game_object", "second_item_game_object", "from_slot_number", "to_slot_number"})	
 	_ref_ixr_signals.add_intercept("on_pda_set_active_subdialog",     		{"ref_pda_script", "section_string", "ui_table"}) -- {ui=nil} is need draw new tab ui set it on variavle ui {ui = ui_pda_encyclopedia_tab.get_ui()}
+	
 	_ref_ixr_signals.add_intercept("ActorMenu_on_item_focus_receive",     	{"item_game_object"}) 
 	_ref_ixr_signals.add_intercept("CUIActorMenu_OnItemFocusReceive",      	{"item_game_object"}) 
+	
 	_ref_ixr_signals.add_intercept("ActorMenu_on_item_focus_lost",        	{"item_game_object"}) 
 	_ref_ixr_signals.add_intercept("CUIActorMenu_OnItemFocusLost",         	{"item_game_object"}) 
+	
 	_ref_ixr_signals.add_intercept("CInventory_ItemAvailableToTrade",     	{"npc_game_object", "item_game_object", "flags_table"}) -- { ret_value = true }
 	_ref_ixr_signals.add_intercept("CInventoryBox_CanTake",     			{"box_game_object", "item_game_object", "flags_table"}) -- { ret_value = true } -- !!! not use !!! bugs in ingine - not all events processed
 	_ref_ixr_signals.add_intercept("CUIActorMenu_CanMoveToPartner",     	{"npc_gobj", "item_gobj", "itmWeight", "partner_inv_weight", "partner_max_weight", "flags"}) -- { ret_value = true } -- диолог с нпс
@@ -226,6 +233,8 @@ function configure(_ref_ixr_signals)
 	
 	_ref_ixr_signals.add_intercept("on_ixr_autoloader_initialized", 		{"ref_ixr_autoloader"}) -- IXR AUTOLOADER
 	_ref_ixr_signals.add_intercept("on_init_ixr_options", 					{"ref_ixr_options"}) -- IXR OPTIONS
+	
+	_ref_ixr_signals.add_intercept("on_item_draw_description", 				{"item_game_object", "item_game_object_id", "item_game_object_section", "extend_description_table"}) -- IXR Extend description
 	
 	if ffx_death_manager then _ref_ixr_signals.add_intercept("ffx_death_manager_on_corpse_removed",    {"object_id", "population_data"}) end
 end

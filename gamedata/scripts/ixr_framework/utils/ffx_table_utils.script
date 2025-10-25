@@ -1,3 +1,90 @@
+
+function push_back_by_key(tbl, key, value)
+	if type(tbl) == "table" then
+		if tbl[key] == nil then
+			tbl[key] = {}
+		end
+		
+		table.insert(tbl[key], value)
+	end
+end
+
+--[[
+Description:
+  Get size any table.
+Parameters: t (table).
+Returns: int
+]]
+function get_size(tbl)
+	local size = 0
+	
+	for k, v in pairs(tbl) do
+		size = size + 1
+	end
+	
+	return size
+end
+
+--[[
+Description:
+  Forward sort assoc by keys tables
+Parameters: 
+	tbl (table).
+Returns: table
+]]
+function sort_assoc_tables(tbl)
+	local keys = {}
+	
+	for k, _ in pairs(tbl) do
+		table.insert(keys, tostring(k))
+	end
+    
+    table.sort(keys)
+    
+    local sorted_values = {}
+    for _, key in ipairs(keys) do
+        table.insert(sorted_values, tbl[key])
+    end
+	
+	return sorted_values
+end
+
+--[[
+Description:
+  Deep concat table with middleware and true forward sort
+Parameters: 
+	tbl (table).
+	closure_fn (function(value) with return string).
+Returns: string
+]]
+function deep_concat(tbl, closure_fn)
+    local parts = {}
+    
+    local function process_value(value)
+        if type(value) == "table" then
+            table.insert(parts, deep_concat(value, closure_fn))
+        else
+            table.insert(parts, closure_fn(value))
+        end
+    end
+    
+    local sorted_keys = {}
+	
+    for k, _ in pairs(tbl) do
+		table.insert(sorted_keys, k)
+	end
+	
+    table.sort(sorted_keys, function(a, b)
+		return tostring(a) < tostring(b) 
+	end)
+    
+    for _, key in ipairs(sorted_keys) do
+        process_value(tbl[key])
+    end
+    
+    return table.concat(parts)
+end
+
 --[[
 Description:
   Checks if a flat table contains a specific value.
