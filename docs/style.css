@@ -1,7 +1,6 @@
-
 body.msdn-bg {
-	background: #f6f8fa;
-	color: #222;
+	background: #1e1e1e;
+	color: #d4d4d4;
 	font-family: 'Segoe UI', Arial, sans-serif;
 	margin: 0;
 	min-height: 100vh;
@@ -14,15 +13,27 @@ body.msdn-bg {
 }
 
 .msdn-header {
-	background: #2b579a;
-	color: #fff;
-	padding: 32px 0 16px 0;
+	background: url('https://github.com/ixray-team/ixray-artwork/blob/default/res/IX-Ray/VK%20splash.png?raw=true') no-repeat center;
+	background-size: cover;
+	height: 130px;
+	color: #d4d4d4;
+	padding: 0 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+	overflow: hidden;
+	border-radius: 8px;
+	max-width: 90%;
+	margin: 0 auto;
 }
 .msdn-header h1 {
-	margin: 0 0 8px 0;
+	margin: 0;
 	font-size: 2.4em;
 	font-weight: 600;
+	background: rgba(0, 0, 0, 0.5);
+	padding: 8px 16px;
+	border-radius: 4px;
 }
 .msdn-header .subtitle {
 	font-size: 1.1em;
@@ -30,10 +41,11 @@ body.msdn-bg {
 }
 
 .msdn-main {
-	background: #fff;
+	background: #2d2d2d;
+	color: #d4d4d4;
 	border-radius: 8px;
 	box-shadow: 0 2px 12px rgba(43,87,154,0.07);
-	margin-top: -32px;
+	margin-top: 30px;
 	padding: 32px 24px 24px 24px;
 }
 
@@ -57,7 +69,7 @@ body.msdn-bg {
 }
 .msdn-btn {
 	display: inline-block;
-	background: #2b579a;
+	background: #007acc;
 	color: #fff;
 	text-decoration: none;
 	padding: 12px 28px;
@@ -68,7 +80,7 @@ body.msdn-bg {
 	box-shadow: 0 1px 4px rgba(43,87,154,0.08);
 }
 .msdn-btn:hover, .msdn-btn:focus {
-	background: #1b3666;
+	background: #005a9e;
 }
 .main-btn {
 	font-size: 1.15em;
@@ -118,12 +130,12 @@ body.msdn-bg {
 	flex-wrap: wrap;
 }
 .footer-links a {
-	color: #2b579a;
+	color: #3794ff;
 	margin-left: 18px;
 	text-decoration: none;
 }
 .footer-links a:hover {
-	text-decoration: underline;
+	color: #1e90ff;
 }
 
 /* Документация: навигация */
@@ -163,4 +175,14 @@ body.msdn-bg {
 	.msdn-nav-list {
 		columns: 1 200px;
 	}
+}
+
+.msdn-btn {
+	margin-top: 0;
+}
+
+.msdn-header + .msdn-main .msdn-btn {
+	margin-top: initial;
+	position: static;
+	top: initial;
 }
