@@ -56,6 +56,7 @@ export default defineConfig({
 
         nav: [
           { text: 'Главная', link: '/' },
+          { text: 'Скачать', link: '/download' }, // Добавлено
           { text: 'Документация', link: '/main/getting-started' },
         ],
 
@@ -255,6 +256,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'Home', link: '/en/' },
+          { text: 'Download', link: '/en/download' }, // Добавлено для английской версии
           { text: 'Documentation', link: '/en/getting-started' },
         ],
         sidebar: [
@@ -270,19 +272,9 @@ export default defineConfig({
   },
   themeConfig: {
     socialLinks: [
-      // You can add any icon from simple-icons (https://simpleicons.org/):
       { icon: 'github', link: 'https://github.com/ixray-team/ixray-1.6-stcop' },
       { icon: 'discord', link: 'https://discord.gg/hWTbHxaYWz' },
       { icon: 'telegram', link: 'https://t.me/ixray_platform' },
-      //{ icon: 'vk', link: 'https://t.me/ixray_platform' },
-      {
-        icon: {
-          svg: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Dribbble</title><path d="M12...6.38z"/></svg>'
-        },
-        link: '...',
-        // You can include a custom label for accessibility too (optional but recommended):
-        ariaLabel: 'cool link'
-      }
     ]
   }
 })
