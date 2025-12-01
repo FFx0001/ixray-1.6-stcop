@@ -9,10 +9,9 @@
 ;которые будут подсвечены при наведении на текущий предмет с этим перечнем (подобно тому как подсвечиваются боеприпасы для оружия в инвентаре)
 highlight_related_sections = related_section_a, related_section_b
 ```
-<details> 
-  <summary>Пример реализации</summary>
+::: details Пример реализации
 
-  ```ini
+```ini
   [root_item_section]:identity_immunities ; Родительский предмет с настроенной подсветкой дочерних предметов
   highlight_related_sections = related_section_a, related_section_b; секции предметов которые будут подсвечены как зависимые от этого предмета
 
@@ -23,7 +22,7 @@ highlight_related_sections = related_section_a, related_section_b
   [related_section_b]:identity_immunities; Подсвечиваемый предмет при наведении на root_item_section
   ...
   ```
-</details>
+:::
 
 ### Шлем (CHelmet)
 

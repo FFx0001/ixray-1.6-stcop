@@ -63,8 +63,7 @@
 
 # Расширенные возможности
 
-<details>
-<summary>Height Map (Terrain) </summary>
+::: details Height Map (Terrain)
 
 ![image](https://github.com/user-attachments/assets/caaa9d22-6803-4b82-bc42-193b1e907c2d)
 
@@ -73,10 +72,9 @@
 * Можно извлечь из модели 
 
 **Подробнее:** https://youtu.be/InNlBHp4VwQ
-</details>
+:::
 
-<details>
-<summary>Random Append</summary>
+::: details Random Append
 
 Добавлена возможность загрузки и сохранения настроек кисти **"Random Append"**
 
@@ -85,20 +83,19 @@
 Поддержка D&D из **Content Browser**
 
 ![ezgif-73c713f1518b07](https://github.com/user-attachments/assets/63630b81-e933-4300-822c-1edd571c70b0)
+:::
 
-</details>
+::: details Validation: Пропуск стадий
 
-<details>
-<summary>Validation: Пропуск стадий</summary>
 <img width="428" height="228" alt="image" src="https://github.com/user-attachments/assets/958cd86b-0d6c-496e-acd2-8d3313c90769" />
 
 * Пропуск валидации при `Make All`
 * Пропуск валидации LOD текстур
 * Пропуск валидации дубликатов имён
-</details>
+:::
 
-<details>
-<summary>Detail Object List</summary>
+::: details Detail Object List
+
 * Поддержка D&D из __Content Browser__
 
 ![image](https://github.com/user-attachments/assets/dd0f771e-cb3a-4e3f-94ce-4997bdbc6db2)
@@ -107,19 +104,16 @@
 * Append Color Index по пипетке на превью маски
 
 ![image](https://github.com/user-attachments/assets/ba58b231-8cf6-4fd1-bdb7-04893f512ddc)
+:::
 
-</details>
-
-<details>
-<summary>Lock Object</summary>
+::: details Lock Object
 
 Восстановлен функционал __Lock Object__ из 0.5/0.6 SDK
 
 ![image](https://github.com/user-attachments/assets/0304126a-3d92-43b8-b529-7d8101595153)
-</details>
+:::
 
-<details>
-<summary>Thumbnail View</summary>
+::: details Thumbnail View
 
 **Thumbnail View** - утилита для быстрого редактирования `.thm` файлов, без загрузки ресурса (`.tga`, `.object`, etc)
 
@@ -128,10 +122,9 @@
 1. Включить отображение `.thm` в __Content Browser__
 2. Выбрать файл (левый клик)
 3. Сохранить свои изменения или закрыть окно/открыть другой файл для отмены изменений
-</details>
+:::
 
-<details>
-<summary>Image Editor</summary>
+::: details Image Editor
 
 * Поддержка BC7
 
@@ -139,49 +132,44 @@
 
 * Следующие MIP фильтры не поддерживаются:
 > Gaussian, Sinc, Bessel, Hanning, Hamming, Blackman
-</details>
+:::
 
-<details>
-<summary>Library Editor</summary>
+::: details Library Editor
 
 * Убран экспорт в LWO
 * Добавлен собственный вьюпорт для работы с объектами 
 
 ![image](https://github.com/user-attachments/assets/f73299f6-4326-4777-958f-dbd7a2211f38)
-</details>
+:::
 
-<details>
-<summary>Particles Editor</summary>
+::: details Particles Editor
 
 * Исправлен Distort рендер 
 
 ![image](https://github.com/user-attachments/assets/8557389e-86fe-47f9-9519-77365ffdb7f2)
-</details>
+:::
 
-<details>
-<summary>Кубический env_mod</summary>
+::: details Кубический env_mod
 
 * Добавлена поддержка кубического env_mod
 
 ![image](https://github.com/user-attachments/assets/1c4b5a2b-70af-40b9-93de-c9c29b924a24)
-</details>
+:::
 
-<details>
-<summary>Minimap Editor</summary>
+::: details Minimap Editor
 
 ![image](https://github.com/user-attachments/assets/12f1450d-a278-495c-a69e-890e6e62a99a)
 
 Полностью функциональный редактор UI карты
-</details>
-<details>
-<summary>Viewbox </summary>
+:::
+::: details Viewbox
 
 ![image](https://github.com/user-attachments/assets/41d39c8e-9424-4c8b-a1d2-628aee2fa897)
 
 Вьюбокс для отображения направления камеры, относительно 0.0.0
-</details>
-<details>
-<summary>Компиляция</summary>
+:::
+::: details Компиляция
+
 Добавлена поддержка запуска компиляторов из Level Editor'a. 
 
 ![image](https://github.com/user-attachments/assets/67a4c4be-6ea7-4b25-b482-6ad2be7b3285)
@@ -189,10 +177,9 @@
 * Так же пути для компилятора можно указать в настройках: 
 
 ![image](https://github.com/user-attachments/assets/db08d18b-0248-44e3-ae78-b324662c6aa3)
-</details>
+:::
 
-<details>
-<summary>Gizmo</summary>
+::: details Gizmo
 
 Реализовано полноценное управление объектами через манимулятор [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo/)
 
@@ -212,11 +199,9 @@
 
 * Поддержка работы в режиме Local и World
 ![image](https://github.com/user-attachments/assets/ba287233-9924-496c-98e3-014454c50de6)
+:::
 
-</details>
-
-<details>
-<summary>Interface</summary>
+::: details Interface
 
 ### Docking 
 Добавлена поддержка докинга, благодаря чему можно кастомизировать положения окон.
@@ -228,41 +213,38 @@
 Во вкладке **"Windows -> Theme"** можно открыть редактор интерфейса приложения, чтоб настроить его цвета на свой вкус:
 
 ![image](https://github.com/user-attachments/assets/8a6df6e3-a0ab-49e2-8fa1-6d3972932134)
-</details>
-<details>
-<summary>Actor Editor: Skip Optimization</summary>
+:::
+::: details Actor Editor: Skip Optimization
+
 Возможность пропуска оптимизации для динамики 
 
 ![image](https://github.com/user-attachments/assets/63cfa5a5-d259-4693-b1a4-97fec0d59130)
-</details>
+:::
 
-<details>
-<summary>Dialogs </summary>
+::: details Dialogs
+
 Старые диалоговые окна Windows были заменены Win7 (и выше) аналогами
 
 ![image](https://github.com/user-attachments/assets/7bfa8457-b674-4403-9be2-45bef1a6ed2a)
-</details>
+:::
 
-<details>
-<summary>World Properties</summary>
+::: details World Properties
 
- Параметры локации вынесены в отдельное окно, которое можно открыть **"Scene -> World Properties"**: 
+Параметры локации вынесены в отдельное окно, которое можно открыть **"Scene -> World Properties"**: 
 
 ![image](https://github.com/user-attachments/assets/47cf2f38-12de-4165-b4c1-24b4d2bbadf0)
 
 ![image](https://github.com/user-attachments/assets/6b1f1045-66f1-430a-a935-ed69ed6241cb)
-</details>
+:::
 
-<details>
-<summary>Object Reference</summary>
+::: details Object Reference
 
 **Object Reference** - это система, позволяющая менять параметры объекта на уровне, не изменяя основную модель (.object). 
 
 ![image](https://github.com/user-attachments/assets/97b2b381-ea8f-4149-be57-84bd4d8110f6)
-</details>
+:::
 
-<details>
-<summary>Content Browser</summary>
+::: details Content Browser
 
 ![image](https://github.com/user-attachments/assets/4d619049-933d-4a36-ba1d-592d9e253807)
 
@@ -279,11 +261,11 @@ __Текущий функционал:__
 * Перемещение файлов/спавн элементов на вьюпорт путём Drag-n-Drop'a.
 
 [YouTube](https://www.youtube.com/watch?v=wAazMqGHhxo)
-</details>
+:::
 
-<details>
-<summary>Play in Editor (PIE)</summary>
- PIE - система запуска симуляции на уровне внутри редактора. Для запуска режима требуется скомпилированный CForm, AI Map, Spawn Elements. При запуске PIE автоматически происходит валидация, однако, её можно провести вручную, сделав "Make Game" (для Spawn Elements) или же использовать данные кнопки: 
+::: details Play in Editor (PIE)
+
+PIE - система запуска симуляции на уровне внутри редактора. Для запуска режима требуется скомпилированный CForm, AI Map, Spawn Elements. При запуске PIE автоматически происходит валидация, однако, её можно провести вручную, сделав "Make Game" (для Spawn Elements) или же использовать данные кнопки: 
 
 ![image](https://github.com/user-attachments/assets/554b4bbf-af25-42e5-a8f7-c1c4702b54bc)
 
@@ -303,19 +285,16 @@ __Текущий функционал:__
 * Включение стадии `build_artefact_spawn_pos`
 
 ![image](https://github.com/user-attachments/assets/998fe370-ea21-40b6-a779-9363fbd533e4)
+:::
 
-</details>
-
-<details>
-<summary>PostProcess Editor</summary>
+::: details PostProcess Editor
 
 * Был перемещён в **Actor Editor -> Windows -> Post Process**
 
 ![image](https://github.com/user-attachments/assets/75b3fd37-80ea-4163-939f-d06aa245ee0f)
-</details>
+:::
 
-<details>
-<summary>Различные кнопки</summary>
+::: details Различные кнопки
 
 ### Recalculate Portals
 Удаляет существующие порталы и создаёт их заново.
@@ -326,34 +305,30 @@ __Текущий функционал:__
 Создаёт копию выделенного объекта в том же месте. (Быстрая операция копировать-вставить)
 
 ![image](https://github.com/user-attachments/assets/cbe0c71a-ed13-4b6b-9fd8-d613f947a1c8)
-</details>
+:::
 
-<details>
-<summary>Level Type: FreeMP</summary>
+::: details Level Type: FreeMP
 
 ![image](https://github.com/user-attachments/assets/eec33ede-4625-4e23-ad97-fe650f3b911b)
 
 `FreeMP` - тип уровня для игры в режиме **Free MP**, представляющего свободную многопользовательскую игру. (Совместимо с OMP)
-</details>
+:::
 
-<details>
-<summary>Puddles</summary>
+::: details Puddles
 
 Puddles -> Это динамические лужи, появляющиеся при дожде. Компиляция: **"Compile -> Make -> Make Puddles"**
 
 ![image](https://github.com/user-attachments/assets/706028ce-1bea-4a1b-882a-a8fff206230e)
-</details>
+:::
 
-<details>
-<summary>Level Type: Macro Editor</summary>
+::: details Level Type: Macro Editor
 
 * Редактор макросов был переписан на систему нодов 
 
 ![image](https://github.com/user-attachments/assets/63153dec-3820-41f3-80b6-f1cd7ba67e7c)
-</details>
+:::
 
-<details>
-<summary>Weather Properties</summary>
+::: details Weather Properties
 
 **Weather Properties** -> отдельное окно, для быстрой настройки погоды в редакторе[**'Options/Menu -> Enviroment -> Weather properties'**]:
 ![2](https://github.com/user-attachments/assets/54ef6690-d4eb-4600-8f71-76b25ef908f5)
@@ -368,4 +343,4 @@ Puddles -> Это динамические лужи, появляющиеся п
 ![3](https://github.com/user-attachments/assets/c3c4979d-80d6-4fb5-a0e6-53d556c22e72)
 ![4](https://github.com/user-attachments/assets/3d2fb5d7-7127-452d-b3f5-7f2fd1b5abc2)
 ![5](https://github.com/user-attachments/assets/35015a9c-650e-4880-818a-d97634b0dbf7)
-</details>
+:::

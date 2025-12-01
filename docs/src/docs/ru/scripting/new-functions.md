@@ -246,10 +246,9 @@ void AllLocationsForEach(const luabind::functor<bool>& functor);
 //-- Выполняет заданную функцию для всех локаций на карте
 ```
 
-<details>
-  <summary>Примеры</summary>
-   
-  ```lua
+::: details Примеры
+
+```lua
   -- Пример использования RemoveMapLocationByObjectID
   mapManager:RemoveMapLocationByObjectID(123)
 
@@ -272,8 +271,7 @@ void AllLocationsForEach(const luabind::functor<bool>& functor);
 	  return false -- возвращает true, если нужно прервать итерацию
   end)
   ```
-
-</details>
+:::
 
 ## CMapLocation
 * Функции
@@ -335,10 +333,9 @@ u16 ObjectID();
 Fvector GetLastPosition(); 
 //-- Возвращает последнюю известную позицию локации на карте
 ```
-<details>
-  <summary>Примеры</summary>
-  
-  ```lua
+::: details Примеры
+
+```lua
   -- Пример использования HintEnabled
   if location:HintEnabled() then
       print("Подсказка включена")
@@ -414,8 +411,7 @@ Fvector GetLastPosition();
   local lastPosition = location:GetLastPosition()
   print("Последняя позиция: " .. lastPosition.x .. ", " .. lastPosition.y .. ", " .. lastPosition.z)
   ```
-
-</details>
+:::
 
 ## CScriptGameObject
 
@@ -474,10 +470,9 @@ void set_sub_inventory_icon(bool m_custom_mark, Fvector2 m_custom_mark_offset, F
 //-- Добавить кастомную текстуру к иконке предмета в инвентаре
 ```
 
-<details> 
-  <summary>Примеры</summary>
+::: details Примеры
 
-  ```lua
+```lua
   -- Пример использования Добавить кастомный текст к иконке предмета в инвентаре
   item:set_sub_inventory_icon_text("22123", GetARGB(255, 128, 155, 255), "font_product_sans_14", vector2():set(10, 10))
   
@@ -553,8 +548,7 @@ void set_sub_inventory_icon(bool m_custom_mark, Fvector2 m_custom_mark_offset, F
   -- Пример использования SetActorRunBackCoef
   actor:SetActorRunBackCoef(0.8)
   ```
-
-</details>
+:::
 
 ## ActorMenu
 ```lua
@@ -587,10 +581,9 @@ void unset_item_additional_description()
 bool is_item_used_additional_description()
 ```
 
-<details> 
-  <summary>Пример оптимизированного варианта установки дополнительного описания к предмету через скрипт</summary>
+::: details Пример оптимизированного варианта установки дополнительного описания к предмету через скрипт
 
-  ```lua
+```lua
   -- Требуется: IXR FRAMEWORK: ^1.0 (в случае отсутствия можно напрямую использовать из _G CUIActorMenu_OnItemFocusReceive)
   -- Подписываемся на коллбек наведения на предмет мыши (IXR FRAMEWORK)
 	function on_game_start()
@@ -637,4 +630,4 @@ bool is_item_used_additional_description()
 		•  Ремонт снаряжения 
 		•  Минимальный порог использования: 30 %
   ```
-</details>
+:::

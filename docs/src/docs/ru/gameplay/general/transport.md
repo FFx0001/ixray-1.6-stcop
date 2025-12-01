@@ -52,8 +52,8 @@ speed_angle = 15.0, -133.0, -250.0, 15.0 ; [NET Online] 0 km/h, 100 km/h, min_an
 *_angle = zero_value, max_value, min_angle, max_angle
 ```
 Для удобства углы подбираются так-же через `bind_rotation`
-<details>
-  <summary>Инструкция по настройке</summary>
+
+::: details Инструкция по настройке
 
 #### Настройка `zero_value` и `max_value`
 
@@ -66,7 +66,7 @@ speed_angle = 15.0, -133.0, -250.0, 15.0 ; [NET Online] 0 km/h, 100 km/h, min_an
 
 ![image](https://github.com/user-attachments/assets/c6b953c1-8db5-4079-8b6b-451d7fcb07f3)
 
-</details>
+:::
 
 ## Usable Bones 
 Данная система позволяет устанавливать скриптовые коллбеки на Use() по названию кости. Для этого нужно зарегистрировать список костей и функций в `car_definition`
@@ -99,11 +99,12 @@ end
 * configs/ui/car_panel.xml <-- XML Описание окна 
 * configs/ui/textures_descr/ui_car_panel.xml <-- Регистрация иконок на текстуре 
 * textures/ui/car_panel.dds <-- Текстура с иконками
-### XML окно 
-<details>
-  <summary>Нажми на меня</summary>
 
-```xml
+### XML окно 
+
+::: details Нажмите на меня, чтобы переключить код
+
+``` xml
 <?xml version='1.0' encoding="UTF-8"?>
 <w>
 	<car_panel x="0" y="0" width="1024" height="768"> <!-- Само окно -->
@@ -145,8 +146,7 @@ end
 	</car_panel>
 </w>
 ```
-</details>
-
+:::
 
 ## Багажник 
 ### Регистрация 
