@@ -116,89 +116,89 @@ export default defineConfig({
             text: 'Оружейная система',
             collapsed: false,
             items: [
-              { text: 'Оружейные классы', link: 'getting-started' },
+              { text: 'Оружейные классы', link: '/weapon-system/weapon-classes' },
             ]
           },
           {
             text: 'Анимационная система',
             collapsed: false,
             items: [
-              { text: 'Общие сведения', link: 'getting-started' },
-              { text: 'Система анимаций от 1 лица (Hud Animator)', link: 'getting-started' },
-              { text: 'Коллбеки к кадрам анимаций (Anim Notify)', link: 'getting-started' },
+              { text: 'Общие сведения', link: '/animation-system/general-information' },
+              { text: 'Система анимаций от 1 лица (Hud Animator)', link: '/animation-system/hud-animator' },
+              { text: 'Коллбеки к кадрам анимаций (Anim Notify)', link: '/animation-system/anim-notify' },
             ]
           },
           {
             text: 'Динамические модели',
             collapsed: false,
             items: [
-              { text: 'Общие сведения', link: 'getting-started' },
-              { text: 'Регулировка отсечения моделей', link: 'getting-started' },
+              { text: 'Общие сведения', link: '/dynamic-models/general-information' },
+              { text: 'Регулировка отсечения моделей', link: '/dynamic-models/adjusting-model-clipping' },
             ]
           },
           {
             text: 'Интерфейс',
             collapsed: false,
             items: [
-              { text: 'Общие сведения', link: 'getting-started' },
-              { text: 'Параметры предметов', link: 'getting-started' },
-              { text: 'Инвентарные слоты', link: 'getting-started' },
-              { text: 'Индивидуальные атласы иконок', link: 'getting-started' },
-              { text: 'Шрифты', link: 'getting-started' },
-              { text: 'XML Expression', link: 'getting-started' },
+              { text: 'Общие сведения', link: '/interface/general-information' },
+              { text: 'Параметры предметов', link: '/interface/item-parameters' },
+              { text: 'Инвентарные слоты', link: '/interface/inventory-slots' },
+              { text: 'Индивидуальные атласы иконок', link: '/interface/custom-icon-atlases' },
+              { text: 'Шрифты', link: '/interface/fonts' },
+              { text: 'XML Expression', link: '/interface/xml-expression' },
             ]
           },
           {
             text: 'Скриптинг',
             collapsed: false,
             items: [
-              { text: 'Базовое пространство имён', link: 'getting-started' },
-              { text: 'Экспортированные enum\'ы', link: 'getting-started' },
-              { text: 'Lua: Callbacks', link: 'getting-started' },
-              { text: 'Новые функции', link: 'getting-started' },
-              { text: 'Система скриптовых коллбэков', link: 'getting-started' },
-              { text: 'Сохранения скриптовых данных (luamarshal)', link: 'getting-started' },
-              { text: 'Погодный менеджер', link: 'getting-started' },
+              { text: 'Базовое пространство имён', link: '/scripting/base-namespace' },
+              { text: 'Экспортированные enum\'ы', link: '/scripting/exported-enums' },
+              { text: 'Lua: Callbacks', link: '/scripting/lua-callbacks' },
+              { text: 'Новые функции', link: '/scripting/new-functions' },
+              { text: 'Система скриптовых коллбэков', link: '/scripting/script-callback-system' },
+              { text: 'Сохранения скриптовых данных (luamarshal)', link: '/scripting/luamarshal' },
+              { text: 'Погодный менеджер', link: '/scripting/weather-manager' },
             ]
           },
           {
             text: 'Графика',
             collapsed: false,
             items: [
-              { text: 'Общие сведения', link: 'getting-started' },
-              { text: 'Физические корректный рендеринг (PBR)', link: 'getting-started' },
-              { text: 'Динамические валлмарки (Dynamic Wallmark)', link: 'getting-started' },
-              { text: 'Шейдерные константы', link: 'getting-started' },
-              { text: 'Погода', link: 'getting-started' },
+              { text: 'Общие сведения', link: '/graphics/general-information' },
+              { text: 'Физические корректный рендеринг (PBR)', link: '/graphics/pbr' },
+              { text: 'Динамические валлмарки (Dynamic Wallmark)', link: '/graphics/dynamic-wallmark' },
+              { text: 'Шейдерные константы', link: '/graphics/shader-constants' },
+              { text: 'Погода', link: '/graphics/weather/main' },
               {
                 items: [
-                  { text: 'Заснеживание', link: 'getting-started' },
-                  { text: 'Намокание', link: 'getting-started' },
+                  { text: 'Заснеживание', link: '/graphics/weather/snowing' },
+                  { text: 'Намокание', link: '/graphics/weather/getting-wet' },
                 ]
               },
-              { text: 'Шейдерные опции', link: 'getting-started' },
-              { text: 'XML Blends', link: 'getting-started' },
+              { text: 'Шейдерные опции', link: '/graphics/shader-options' },
+              { text: 'XML Blends', link: '/graphics/xml-blends' },
             ]
           },
           {
             text: 'Звуки',
             collapsed: false,
             items: [
-              { text: 'Общие сведения', link: 'getting-started' },
-              { text: 'Звуковые слои (Sound Layers)', link: 'getting-started' },
-              { text: 'Звуковые зоны (Sound Env)', link: 'getting-started' },
-              { text: 'Эффекты снаряжения', link: 'getting-started' },
+              { text: 'Общие сведения', link: '/sounds/general-information' },
+              { text: 'Звуковые слои (Sound Layers)', link: '/sounds/sound-layers' },
+              { text: 'Звуковые зоны (Sound Env)', link: '/sounds/sound-env' },
+              { text: 'Эффекты снаряжения', link: '/sounds/equipment-effects' },
             ]
           },
           {
             text: 'Редакторы',
             collapsed: false,
             items: [
-              { text: 'IXR SDK', link: 'getting-started' },
+              { text: 'IXR SDK', link: '/editors/ixr-sdk' },
               {
                 items: [
-                  { text: 'Plugins', link: 'getting-started' },
-                  { text: 'Dialog Editor', link: 'getting-started' },
+                  { text: 'Plugins', link: '/editors/plugins' },
+                  { text: 'Dialog Editor', link: '/editors/dialog-editor' },
                 ]
               },
             ]
@@ -207,15 +207,15 @@ export default defineConfig({
             text: 'Утилиты',
             collapsed: false,
             items: [
-              { text: 'Компиляторы', link: 'getting-started' },
-              { text: 'Компрессор', link: 'getting-started' },
+              { text: 'Компиляторы', link: '/utilities/compilers' },
+              { text: 'Компрессор', link: '/utilities/compressor' },
             ]
           },
           {
             text: 'Система аддонов',
             collapsed: false,
             items: [
-              { text: 'Общие сведения', link: 'getting-started' },
+              { text: 'Общие сведения', link: '/addon-system/general-information' },
             ]
           },
           {
@@ -225,14 +225,14 @@ export default defineConfig({
               {
                 text: 'Clear Sky',
                 items: [
-                  { text: 'Технические особенности', link: 'getting-started' },
+                  { text: 'Технические особенности', link: '/platforms/clear-sky/technical-features' },
                 ]
               },
               {
                 text: 'Мультиплеер',
                 items: [
-                  { text: 'Общие сведения', link: 'getting-started' },
-                  { text: 'Dedicated Server', link: 'getting-started' },
+                  { text: 'Общие сведения', link: '/platforms/multiplayer/general-information' },
+                  { text: 'Dedicated Server', link: '/platforms/multiplayer/dedicated-server' },
                 ]
               }
             ]
@@ -241,7 +241,7 @@ export default defineConfig({
             text: 'Руководства и вклад',
             collapsed: false,
             items: [
-              { text: 'Правила оформления документации в GitHub Wiki', link: 'getting-started' },
+              { text: 'Правила оформления документации в GitHub Wiki', link: '/guidelines-contributions/documentation-rules-github-wiki' },
             ]
           },
         ]
