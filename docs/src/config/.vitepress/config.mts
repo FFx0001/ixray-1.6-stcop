@@ -65,24 +65,24 @@ export default defineConfig({
             collapsed: false,
             items: [
               { text: 'Установка', link: '/main/getting-started' },
-              { text: 'Интеграции', link: 'getting-started' },
-              { text: 'Ключи запуска', link: 'getting-started' },
-              { text: 'Консольные команды', link: 'getting-started' },
-              { text: 'Система игнорирования файлов', link: 'getting-started' },
-              { text: 'Конфигурация расширений движка', link: 'getting-started' },
-              { text: 'Как скачать IX‐Ray (стабильную и rolling версии)', link: 'getting-started' },
+              { text: 'Интеграции', link: '/main/integrations' },
+              { text: 'Ключи запуска', link: '/main/launch-keys' },
+              { text: 'Консольные команды', link: '/main/console-commands' },
+              { text: 'Система игнорирования файлов', link: '/main/file-ignoring-system' },
+              { text: 'Конфигурация расширений движка', link: '/main/engine-extension-configuration' },
+              { text: 'Как скачать IX‐Ray (стабильную и rolling версии)', link: '/main/download' },
             ]
           },
           {
             text: 'Конфиги',
             collapsed: false,
             items: [
-              { text: 'DLTX', link: 'getting-started' },
-              { text: 'XMLOverride', link: 'getting-started' },
-              { text: 'Локализация игры', link: 'getting-started' },
-              { text: 'Кодировка файлов', link: 'getting-started' },
-              { text: 'Групповое подключение файлов через маски', link: 'getting-started' },
-              { text: 'Предустановленные пользовательские параметры', link: 'getting-started' },
+              { text: 'DLTX', link: '/configs/dltx' },
+              { text: 'XMLOverride', link: '/configs/xml-override' },
+              { text: 'Локализация игры', link: '/configs/localization' },
+              { text: 'Кодировка файлов', link: '/configs/file-encoding' },
+              { text: 'Групповое подключение файлов через маски', link: '/configs/group-file-connection-using-masks' },
+              { text: 'Предустановленные пользовательские параметры', link: '/configs/preset-user-parameters' },
             ]
           },
           {
@@ -92,22 +92,22 @@ export default defineConfig({
               {
                 text: 'Общее',
                 items: [
-                  { text: 'Диалоги', link: 'getting-started' },
-                  { text: 'Мутанты', link: 'getting-started' },
-                  { text: 'Транспорт', link: 'getting-started' },
-                  { text: 'Персонажи', link: 'getting-started' },
-                  { text: 'Вид от 3 лица', link: 'getting-started' },
-                  { text: 'Ноги от 1 лица', link: 'getting-started' },
-                  { text: 'Симуляция жизни', link: 'getting-started' },
-                  { text: 'Используемые предметы', link: 'getting-started' },
-                  { text: 'Зоны (Костры, аномалии...)', link: 'getting-started' },
+                  { text: 'Диалоги', link: '/gameplay/general/dialogues' },
+                  { text: 'Мутанты', link: '/gameplay/general/mutants' },
+                  { text: 'Транспорт', link: '/gameplay/general/transport' },
+                  { text: 'Персонажи', link: '/gameplay/general/characters' },
+                  { text: 'Вид от 3 лица', link: '/gameplay/general/3rd-person-view' },
+                  { text: 'Ноги от 1 лица', link: '/gameplay/general/legs-from-the-first-person' },
+                  { text: 'Симуляция жизни', link: '/gameplay/general/life-simulation' },
+                  { text: 'Используемые предметы', link: '/gameplay/general/items-used' },
+                  { text: 'Зоны (Костры, аномалии...)', link: '/gameplay/general/zones-bonfires-anomalies' },
                 ]
               },
               {
                 text: 'Снаряжение',
                 items: [
-                  { text: 'Общие сведения', link: 'getting-started' },
-                  { text: 'Апгрейды предметов', link: 'getting-started' },
+                  { text: 'Общие сведения', link: '/gameplay/equipment/general-information' },
+                  { text: 'Апгрейды предметов', link: '/gameplay/equipment/item-upgrades' },
                 ]
               }
             ]

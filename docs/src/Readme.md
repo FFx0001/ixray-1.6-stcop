@@ -12,3 +12,7 @@ npm run docs:dev
 #сборка
 npm run docs:build
 ```
+
+## Документация
+
+https://vitepress.dev/ru/guide/what-is-vitepress
