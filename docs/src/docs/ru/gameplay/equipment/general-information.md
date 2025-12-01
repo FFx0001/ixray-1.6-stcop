@@ -1,5 +1,5 @@
-# Общие сведения
-### Любой инвентарный предмет (CInventoryItem)
+# Gameplay: Инвентарные предметы
+## Любой инвентарный предмет (CInventoryItem)
 > [!IMPORTANT]
 > **Статус**: Поддерживается <br>
 > **Минимальная версия**: 1.3
@@ -24,7 +24,7 @@ highlight_related_sections = related_section_a, related_section_b
   ```
 :::
 
-### Шлем (CHelmet)
+## Шлем (CHelmet)
 
 > [!IMPORTANT]
 > **Статус**: Поддерживается <br>
@@ -42,7 +42,7 @@ hud_gas_mask_avaliable = true; Доступна ли отрисовка капе
 hud_rain_drops_avaliable = true; Доступна ли отрисовка газ маски
 ```
 
-### Броня (CCustomOutfit)
+## Броня (CCustomOutfit)
 
 > [!IMPORTANT]
 > **Статус**: Поддерживается <br>
@@ -60,7 +60,7 @@ hud_gas_mask_avaliable = true; Доступна ли отрисовка капе
 hud_rain_drops_avaliable = true; Доступна ли отрисовка газ маски
 ```
 
-### Фонарь (CTorch)
+## Фонарь (CTorch)
 
 > [!IMPORTANT]
 > **Статус**: Поддерживается <br>
@@ -70,7 +70,7 @@ hud_rain_drops_avaliable = true; Доступна ли отрисовка газ
 snd_click = device\torch_click; Опциональный звук включения/выключения фонаря
 ```
 
-### Сумки (CBackpack)
+## Сумки (CBackpack)
 
 > [!IMPORTANT]
 > **Статус**: Поддерживается <br>

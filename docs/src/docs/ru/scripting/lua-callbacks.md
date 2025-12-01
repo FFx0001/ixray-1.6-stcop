@@ -1,10 +1,10 @@
 # Lua: Callbacks
-# Binder Callbacks
+## Binder Callbacks
 > [!IMPORTANT]
 > **Статус**: Поддерживается  <br>
 > **Минимальная версия**: 1.1  <br>
 
-## CGameObject
+### CGameObject
 ```lua
 item_to_belt(obj) -- предмет переместился на пояс
 item_to_slot(obj) -- предмет переместился в слот 
@@ -20,14 +20,14 @@ weapon_zoom_out(owner, weapon)
 hit(owner, damage, direction, hitter, bone_id) -- получение хита
 ```
 
-## CActor
+### CActor
 ```lua
 weapon_magazine_empty(weapon, ammo_count)
 hud_animation_end(hud_obj, hud_obj_section, current_motion, state, anim_slot)
 actor_before_death(killer_id)
 ```
 
-# Static Callbacks
+## Static Callbacks
 > [!IMPORTANT]
 > **Статус**: Поддерживается  <br>
 > **Минимальная версия**: 1.3  <br>
@@ -36,7 +36,7 @@ actor_before_death(killer_id)
 
 Для их активации перейдите в файл `game_global.ltx` и раскомментируйте нужные вам
 
-## IX-Ray 
+### IX-Ray 
 * OnSkipKillActor
 ```lua
 --// see xr_effects.enable_ui
@@ -60,7 +60,7 @@ function CInventoryBox_OnInvBoxCanPlaceItem(inv_box_game_object, item_game_objec
 end
 ```
 
-## Call of Chernobyl
+### Call of Chernobyl
 * OnCanTake
 ```lua
 function CInventoryBox_CanTake(inv_box, item)
@@ -208,7 +208,7 @@ function update_best_weapon(npc,cur_wpn)
 	return nil
 end
 ```
-## Improved Weapon Pack
+### Improved Weapon Pack
 * OnZoneTouch
 ```lua
 function CZone_Touch(zone_game_object)
@@ -216,7 +216,7 @@ function CZone_Touch(zone_game_object)
 	return false
 end
 ```
-## Gunslinger
+### Gunslinger
 * OnCanDisassembleItem
 ```lua
 function gunsl_can_disassemble_item(section, condition, partner_profile_name)

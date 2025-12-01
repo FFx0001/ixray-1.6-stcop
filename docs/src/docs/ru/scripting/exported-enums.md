@@ -1,10 +1,9 @@
 # Экспортированные enum'ы
-### Обзор
 > [!IMPORTANT]  
 > **Статус**: Поддерживается <br>
 > **Минимальная версия**: 1.0
 
-### EBoostParams
+## EBoostParams
 ```lua
 eBoostHpRestore -- Восстановление здоровья
 eBoostPowerRestore -- Восстановление стамины
@@ -25,14 +24,14 @@ eBoostFireWoundImmunity -- Уменьшение влияния огнестре�
 eBoostWoundImmunity -- Уменьшение влияния ранения на прочность костюма/шлема/актора
 ```
 
-### EMovementStates
+## EMovementStates
 ```lua
 eOld -- Предыдущее состояние движения актора
 eWishful -- Желаемое состояние движения актора
 eReal -- Реальное состояние движения актора
 ```
 
-### EMoveCommand
+## EMoveCommand
 ```lua
 mcFwd -- Актор идёт вперед
 mcBack -- Актор идёт назад
