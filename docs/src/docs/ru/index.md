@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "IX-Ray Engine 1.6 (STCoP)"
+  name: "IX-Ray Platform"
   #text: "IX-Ray — это форк X-Ray Engine 1.6, направленный на улучшение игрового и девелоперского опыта, исправление багов оригинала и расширение возможностей для модмейкеров."
   tagline: IX-Ray — это форк X-Ray Engine 1.6, направленный на улучшение игрового и девелоперского опыта, исправление багов оригинала и расширение возможностей для модмейкеров.
   actions:
@@ -21,11 +21,11 @@ hero:
       link: https://t.me/ixray_platform
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Code Quality
+    details: Обновлённая и оптимизированная кодовая база
+  - title: SDK
+    details: Полный набор инструментов
+  - title: Platforms
+    details: Расширенная поддержка мультиплеера, CoC, OMP и Clear Sky
 ---
 

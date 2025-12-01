@@ -8,7 +8,7 @@ export default defineConfig({
     'ru/:rest*': ':rest*',
   },
   
-  title: "IX-Ray Engine 1.6 (STCoP)", //Название в шапке
+  title: "IX-Ray Platform", //Название в шапке
   description: "Описание 234",
   locales: {
     root: {
@@ -43,7 +43,7 @@ export default defineConfig({
 
         footer: {
           message: 'Опубликовано под лицензией MIT.',
-          copyright: '© 2025 ixray-team / IX-Ray Engine 1.6 (STCoP)'
+          copyright: '© 2025 ixray-team / IX-Ray Platform'
         },
 
         darkModeSwitchLabel: 'Оформление',
