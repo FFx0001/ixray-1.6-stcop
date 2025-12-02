@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Документация
-      link: /getting-started
+      link: /main/getting-started
     - theme: alt
       text: GitHub
       link: https://github.com/ixray-team/ixray-1.6-stcop
