@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import lightbox from 'vitepress-plugin-lightbox'
 import { enLocale } from './locales/en.mts'
 import { ruLocale } from './locales/ru.mts'
 
@@ -18,6 +19,12 @@ export default defineConfig({
   locales: {
     root: ruLocale,
     en: enLocale,
+  },
+
+  markdown: {
+    config: (md) => {
+      md.use(lightbox, {})
+    },
   },
 
   themeConfig: {

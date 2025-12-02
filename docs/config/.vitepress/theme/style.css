@@ -114,8 +114,18 @@
 
 @media (min-width: 960px) {
   :root {
-    --vp-home-hero-image-filter: blur(68px);
+  --vp-home-hero-image-filter: blur(68px);
   }
+}
+
+.medium-zoom-overlay {
+  /* Keep zoom overlay above layout and match docs backdrop */
+  background: rgba(0, 0, 0, 0.6) !important;
+  z-index: 2000;
+}
+
+.medium-zoom-image--opened {
+  z-index: 2001;
 }
 
 /**
@@ -136,4 +146,3 @@
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
-
