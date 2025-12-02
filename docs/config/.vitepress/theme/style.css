@@ -146,3 +146,25 @@
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
+
+/**
+ * Support badges (sidebar)
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --ix-support-supported-text: #7c3aed;
+  --ix-support-supported-bg: rgba(124, 58, 237, 0.12);
+  --ix-support-unsupported-text: #e11d48;
+  --ix-support-unsupported-bg: rgba(225, 29, 72, 0.14);
+  --ix-support-legacy-text: #b45309;
+  --ix-support-legacy-bg: rgba(180, 83, 9, 0.14);
+}
+
+.dark {
+  --ix-support-supported-text: #e0d4ff;
+  --ix-support-supported-bg: rgba(124, 58, 237, 0.25);
+  --ix-support-unsupported-text: #ffe1e6;
+  --ix-support-unsupported-bg: rgba(225, 29, 72, 0.3);
+  --ix-support-legacy-text: #ffe9a8;
+  --ix-support-legacy-bg: rgba(180, 83, 9, 0.28);
+}

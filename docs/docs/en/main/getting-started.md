@@ -1,85 +1,72 @@
-# Markdown Extension Examples
+# Сборка репозитория
 
-This page demonstrates some of the built-in markdown extensions provided by VitePress.
+## Windows {#windows}
 
-## Syntax Highlighting
+Для сборки под Windows требуется:
+- git
+- cmake
+- Visual Studio 2019 or 2022
 
-VitePress provides Syntax Highlighting powered by [Shiki](https://github.com/shikijs/shiki), with additional features like line-highlighting:
+**Сборка**
 
-**Input**
+``` sh
+git clone https://github.com/ixray-team/ixray-1.6-stcop.git
+cd ixray-1.6-stcop
 
-````md
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
-}
-```
-````
-
-**Output**
-
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
-}
+cmake -B build
 ```
 
-## Custom Containers
+Далее, в папке build откройте .sln файл в Visual Studio и соберите нужный проект.
 
-**Input**
+## Linux {#linux}
 
-```md
-::: info
-This is an info box.
-:::
+Для сборки под Linux требуется:
+- git
+- cmake
+- clang
 
-::: tip
-This is a tip.
-:::
+Отдельные зависимости:
+### Ubuntu {#ubuntu}
 
-::: warning
-This is a warning.
-:::
+``` sh
+# SDL3 deps: (https://wiki.libsdl.org/SDL3/README-linux)
+sudo apt-get install build-essential make pkg-config cmake ninja-build gnome-desktop-testing libasound2-dev libpulse-dev \
+libaudio-dev libfribidi-dev libjack-dev libsndio-dev libx11-dev libxext-dev \
+libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev libxss-dev libxtst-dev \
+libxkbcommon-dev libdrm-dev libgbm-dev libgl1-mesa-dev libgles2-mesa-dev \
+libegl1-mesa-dev libdbus-1-dev libibus-1.0-dev libudev-dev
 
-::: danger
-This is a dangerous warning.
-:::
+## Steam Networking
+sudo apt install libssl-dev libprotobuf-dev protobuf-compiler
 
-::: details
-This is a details block.
-:::
+## IX-Ray
+sudo apt install uuid-dev libtbb-dev liblzo2-dev
 ```
 
-**Output**
+> Fedora
 
-::: info
-This is an info box.
-:::
+``` sh
+# SDL3 deps: (https://wiki.libsdl.org/SDL3/README-linux)
+sudo dnf installgit-core make alsa-lib-devel fribidi-devel pulseaudio-libs-devel pipewire-devel \
+libX11-devel libXext-devel libXrandr-devel libXcursor-devel libXfixes-devel \
+libXi-devel libXScrnSaver-devel dbus-devel ibus-devel \
+systemd-devel mesa-libGL-devel libxkbcommon-devel mesa-libGLES-devel \
+mesa-libEGL-devel vulkan-devel wayland-devel wayland-protocols-devel \
+libdrm-devel mesa-libgbm-devel libusb1-devel libdecor-devel pipewire-jack-audio-connection-kit-devel
 
-::: tip
-This is a tip.
-:::
+## Steam Networking
+sudo dnf install openssl-devel protobuf-devel
 
-::: warning
-This is a warning.
-:::
+## IX-Ray
+sudo dnf install libuuid-devel tbb-devel lzo-devel
+```
 
-::: danger
-This is a dangerous warning.
-:::
+### Сборка
 
-::: details
-This is a details block.
-:::
+``` sh
+git clone https://github.com/ixray-team/ixray-1.6-stcop.git
+cd ixray-1.6-stcop
 
-## More
-
-Check out the documentation for the [full list of markdown extensions](https://vitepress.dev/guide/markdown).
+cmake -B build
+cmake --build build
+```

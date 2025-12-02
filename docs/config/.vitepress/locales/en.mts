@@ -8,11 +8,12 @@ const nav: DefaultTheme.NavItem[] = [
 
 const sidebar: DefaultTheme.Sidebar = [
   {
-    text: 'Introduction',
+    text: 'Основное',
+    collapsed: false,
     items: [
-      { text: 'Installation', link: '/en/main/getting-started' }
+      { text: 'Installation', link: '/en/main/getting-started' },
     ]
-  }
+  },
 ]
 
 export const enLocale = {
