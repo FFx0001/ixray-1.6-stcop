@@ -16,3 +16,9 @@ npm run docs:build
 ## Документация
 
 https://vitepress.dev/ru/guide/what-is-vitepress
+
+## Компоненты
+ ``` html
+ # Компонент для видео
+ <Video url="" />
+ ```
