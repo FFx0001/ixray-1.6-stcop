@@ -1,10 +1,29 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+interface DownloadItem {
+  title: string
+  description: string
+  tag: string
+  button: string
+  link?: string
+  secondaryLink?: string
+  secondaryText?: string
+}
+
+interface PageData {
+  title: string
+  description: string
+}
+
+interface MainItem extends DownloadItem {
+  dots: string[]
+}
+
 const props = defineProps<{
-  page_data: {  }[]
-  main_Item: {  }[]
-  items: {  }[]
+  page_data: PageData
+  main_Item: MainItem
+  items: DownloadItem[]
 }>()
 </script>
 
@@ -38,7 +57,7 @@ const props = defineProps<{
 		<li v-for="dotka in main_Item.dots">{{dotka}}</li>
       </ul>
       <div class="download-card__footer">
-        <a href="#" class="btn-primary">{{main_Item.button}}</a>
+        <a :href="main_Item.link" class="btn-primary" target="_blank" rel="noopener noreferrer">{{main_Item.button}}</a>
         <span class="hash">sha256: пупипупиппупип</span>
       </div>
     </div>
@@ -52,7 +71,11 @@ const props = defineProps<{
 		<h3>{{ item.title }}</h3>
         <p class="download-card__desc">{{item.description}}</p>
         <div class="download-card__buttons">
-          <a href="#" class="btn-ghost">{{item.button}}</a>
+          <a v-if="item.link" :href="item.link" class="btn-ghost" target="_blank" rel="noopener noreferrer">{{item.button}}</a>
+          <a v-else href="#" class="btn-ghost">{{item.button}}</a>
+          <a v-if="item.secondaryLink" :href="item.secondaryLink" class="link-minor" target="_blank" rel="noopener noreferrer">
+            {{item.secondaryText || 'Библиотеки'}}
+          </a>
         </div>
 	  </div>
 
@@ -241,6 +264,12 @@ const props = defineProps<{
   border: none;
   cursor: pointer;
   text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
 }
 
 .btn-ghost {
@@ -254,6 +283,12 @@ const props = defineProps<{
   background: rgba(15, 23, 42, 0.9);
   border: 1px solid rgba(148, 163, 184, 0.5);
   text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(148, 163, 184, 0.8);
+  background: rgba(30, 41, 59, 0.9);
 }
 
 .link-minor {
@@ -261,6 +296,17 @@ const props = defineProps<{
   font-size: 12px;
   color: #a5b4fc;
   text-decoration: none;
+  transition: all 0.2s ease;
+  align-items: center;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.link-minor:hover {
+  color: #818cf8;
+  text-decoration: underline;
+  border-color: rgba(165, 180, 252, 0.3);
 }
 
 .hash {
