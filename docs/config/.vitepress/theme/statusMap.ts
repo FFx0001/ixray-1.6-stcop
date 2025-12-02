@@ -10,9 +10,17 @@ export type SupportMeta = {
  * Ключи должны соответствовать разрешенной ссылке на боковой панели (например, "/configs/dltx").
  */
 export const supportStatusMap: Record<string, SupportMeta> = {
-  //'/configs/dltx': { label: '1.3', state: 'supported' },
-  //'/configs/xml-override': { label: 'Unsupported', state: 'unsupported' },
- // '/main/getting-started': { label: 'Unsupported', state: 'unsupported' },
+  '/platforms/multiplayer/dedicated-server': { label: '1.3', state: 'supported' },
+  '/graphics/weather/snowing': { label: '1.3', state: 'supported' },
+  '/graphics/pbr': { label: '1.3', state: 'supported' },
+  '/animation-system/hud-animator': { label: '1.3', state: 'supported' },
+  '/interface/custom-icon-atlases': { label: '1.3', state: 'supported' },
+  '/animation-system/anim-notify': { label: '1.2', state: 'supported' },
+  '/sounds/general-information': { label: '2.0', state: 'supported' },
+  '/platforms/multiplayer/general-information': { label: '2.0', state: 'supported' },
+  '/graphics/dynamic-wallmark': { label: '2.0', state: 'supported' },
+  '/scripting/weather-manager': { label: 'Unsupported', state: 'unsupported' },
+  '/scripting/luamarshal': { label: 'Unsupported', state: 'unsupported' },
 }
 
 const normalizeLink = (link: string) => link.replace(/^\/(en|ru)(?=\/)/, '')
