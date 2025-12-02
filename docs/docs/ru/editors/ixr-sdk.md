@@ -25,7 +25,9 @@
 * Actor Editor: Поддержка 32-битных анимаций 
 * Actor Editor: Режим групп сглаживания из 0.4 SDK 
 * Actor Editor: Поддержка групп сглаживаний по **Vertex Normals**
-* Actor Editor: Возможность [создать Link кость с привязкой статического меша](https://www.youtube.com/watch?v=ibvCIYcw6Jc) на неё
+::: details Actor Editor: Возможность создать Link кость с привязкой статического меша на неё 
+<Video url="https://www.youtube.com/watch?v=ibvCIYcw6Jc"/>
+:::
 ***
 * Level Editor: Добавлена возможность создавать шейпы на локации через `ПКМ -> Create -> Shape`
 * Level Editor: Поддержка 30 **SubMaps** для секторов
@@ -42,7 +44,9 @@
 * Level Editor: Исправлена работа `Ignore Materials` в **AIMap Tools**
 * Level Editor: Исправлено чтение .thm для групповых объектов. Теперь читаются по тому же пути, что и сами объекты: `rawdata\group`
 * Level Editor: Исправлен сброс сектора при замене `Scene Object` через `Reference` 
-* Level Editor: [Добавлен `Multi Replace` с восстановлением секторов](https://www.youtube.com/watch?v=1UCjDdH6BNg)
+::: details Level Editor: Добавлен `Multi Replace` с восстановлением секторов
+<Video url="https://www.youtube.com/watch?v=1UCjDdH6BNg"/>
+:::
 * Level Editor: Поддержка открытия `temp\*.tmp` файлов
 * Level Editor: Отрисовка травы переведена на GPU
 * Level Editor: Исправлена загрузка и сохранение `.thm` для GroupObject. Теперь `.thm` хранятся там же, где и сами объекты
@@ -259,8 +263,7 @@ __Текущий функционал:__
 * Открытие TGA для преобразования в DDS
 * Поиск по файлам/спавн элементам
 * Перемещение файлов/спавн элементов на вьюпорт путём Drag-n-Drop'a.
-
-[YouTube](https://www.youtube.com/watch?v=wAazMqGHhxo)
+<Video url="https://www.youtube.com/watch?v=wAazMqGHhxo"/>
 :::
 
 ::: details Play in Editor (PIE)
@@ -272,8 +275,10 @@ PIE - система запуска симуляции на уровне вну�
 На текущий момент реализовано:
 * A-Life
 * Weather
-* Dynamic Light [(YouTube)](https://www.youtube.com/watch?v=EI3NBB-dfb0)
-* Sound Environments [(YouTube)](https://www.youtube.com/watch?v=-r738Zd1zlE)
+* Dynamic Light
+ <Video url="https://www.youtube.com/watch?v=EI3NBB-dfb0"/>
+* Sound Environments
+ <Video url="https://www.youtube.com/watch?v=-r738Zd1zlE"/>
 * Particles (+ Distort)
 * Просмотр Cut-Scene
 
