@@ -8,6 +8,7 @@ export default defineConfig({
   title: "IX-Ray Platform", //Название в шапке
   description: "Описание 234",
 
+  base: '/ixray-1.6-stcop/',
   srcDir: "../docs",
   outDir: '../public',
   lastUpdated: true,
